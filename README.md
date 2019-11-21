@@ -1,4 +1,4 @@
-# KarmaTexts
+# SmallReminders
 node.js backend to keep track and send messages
 
 Phase I:
