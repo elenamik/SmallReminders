@@ -2,6 +2,7 @@
 
 const express = require('express');
 const mongoClient = require('./mongo')
+require('dotenv').config()
 
 
 // Constants
