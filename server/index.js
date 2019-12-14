@@ -2,6 +2,7 @@
 
 const express = require('express');
 const mongoClient = require('./mongo')
+require('dotenv').config()
 
 
 // Constants
@@ -12,6 +13,10 @@ const HOST = '0.0.0.0';
 const app = express();
 app.get('/', (req, res) => {
   res.send('Hello world!! This is Lena, from another branch\n');
+});
+
+app.get('/view', (req, res) => {
+  res.send('you will see data here\n');
 });
 
 app.listen(PORT, HOST);
