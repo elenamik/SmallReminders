@@ -1,5 +1,5 @@
-require('dotenv').config({path:'./process.env'})
+require('dotenv').config()
 
 module.exports = {
-    mongoURI:`mongodb+srv://${process.env.MONG_USER}:${process.env.MONGO_PW}@smallreminders-q5cgw.mongodb.net/test?retryWrites=true&w=majority`
+    mongoURL:`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PW}@smallreminders-q5cgw.mongodb.net/small_reminders_prod?retryWrites=true&w=majority`
 }

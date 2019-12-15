@@ -1,9 +1,12 @@
 'use strict';
-
 const express = require('express');
-const mongoClient = require('./mongo')
 require('dotenv').config()
-
+console.log("dotenv test",process.env.TEST)
+const routes = require('./routes')
+const MongoDB = require('./mongoUtil')
+MongoDB.connectToServer().catch( err => {
+  console.log(chalk.red("connection to db failed"))
+})
 
 // Constants
 const PORT = process.env.PORT || 8080 ;
@@ -15,11 +18,8 @@ app.get('/', (req, res) => {
   res.send('Hello world!! This is Lena, from another branch\n');
 });
 
-app.get('/view', (req, res) => {
-  res.send('you will see data here\n');
-});
+app.use(routes);
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
 
-mongoClient()
