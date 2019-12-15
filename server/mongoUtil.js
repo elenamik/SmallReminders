@@ -5,7 +5,9 @@
 const MongoClient = require('mongodb').MongoClient;
 const url = require('./config').mongoURL;
 
-let _db;
+let MongoObj = {
+     _db: undefined
+};
 
 const connectToServer = async ( ) => {
     await MongoClient.connect( url, {
@@ -13,7 +15,7 @@ const connectToServer = async ( ) => {
         useUnifiedTopology: true
     }).then( client => {
         console.log("successfully connected to mongo client");
-        _db = client.db();
+        MongoObj._db = client.db();
         return;
     }).catch( err => {
         console.log("could not connect, check internet connection and login info");
@@ -23,11 +25,16 @@ const connectToServer = async ( ) => {
 }
 
 const getDB = () => {
-    return _db;
+    return MongoObj._db;
 }
+
+const getCollection = ( targetCollection) => {
+    return MongoObj._db.collection(targetCollection)
+}
+
 
 const disconnectDB = () => {
-    return _db.close()
+    return MongoObj._db.close()
 }
 
-module.exports = { connectToServer, getDB, disconnectDB }
+module.exports = { connectToServer, getDB, getCollection, disconnectDB }
