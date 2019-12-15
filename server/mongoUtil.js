@@ -1,3 +1,7 @@
+/**
+ * Handles establishing mongoDB connection, and connection object
+ */
+
 const MongoClient = require('mongodb').MongoClient;
 const url = require('./config').mongoURL;
 

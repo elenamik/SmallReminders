@@ -1,3 +1,6 @@
+/**
+ * Entry point for server, sets up middleware, routing
+ */
 'use strict';
 const express = require('express');
 require('dotenv').config()
@@ -5,7 +8,7 @@ console.log("dotenv test",process.env.TEST)
 const routes = require('./routes')
 const MongoDB = require('./mongoUtil')
 MongoDB.connectToServer().catch( err => {
-  console.log(chalk.red("connection to db failed"))
+  console.log("connection to db failed")
 })
 
 // Constants

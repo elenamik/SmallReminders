@@ -1,3 +1,7 @@
+/**
+ * Config for application
+ */
+
 require('dotenv').config()
 
 module.exports = {
