@@ -1,6 +1,7 @@
 /**
  * Entry point for server, sets up middleware, routing
  */
+
 'use strict';
 const express = require('express');
 require('dotenv').config()
