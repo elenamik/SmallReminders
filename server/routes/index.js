@@ -18,4 +18,8 @@ router.post( '/principles/delete',
     principles.delete
 )
 
+router.post( '/principles/update',
+    principles.update
+)
+
 module.exports = router

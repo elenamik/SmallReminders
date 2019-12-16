@@ -3,7 +3,7 @@
  */
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-const Principle=mongoose.model('Principle');
+const Principle = mongoose.model('Principle');
 var ObjectId = require('mongoose').Types.ObjectId; 
 
 /**
@@ -19,7 +19,6 @@ exports.read = async ( req, res, next ) => {
     catch (err) {
         res.send(String(err))
     }
-
 }
 
 /**
@@ -47,6 +46,7 @@ exports.add = async (req, res, next) => {
  */
 exports.delete = async (req, res, next ) => {
     try {
+        // Id in the request is the object Id of principle to delete
         const query = {
             _id: new ObjectId(req.body.id),
             owner: new ObjectId(req.user._id)
@@ -58,5 +58,22 @@ exports.delete = async (req, res, next ) => {
     catch (err) {
         res.send(String(err))
     }
+}
 
+exports.update = async (req, res, next ) => {
+    try {
+        const query = {
+            _id: new ObjectId(req.body.id),
+            owner: new ObjectId(req.user._id)
+        }
+        const update = {
+            content: req.body.content
+        }
+        console.log(`updating principle ${JSON.stringify(query)} to ${JSON.stringify(update)}`)
+        const result = await Principle.updateOne(query,update)
+        res.send(result)
+    }
+    catch (err) {
+        res.send(String(err))
+    }
 }
