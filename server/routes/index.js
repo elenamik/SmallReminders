@@ -4,16 +4,15 @@
 
 var express = require('express')
 var router = express.Router()
-const principlesController = require('../controllers/principles')
+const principles = require('../controllers/principles')
 
-router.get( '/view',
-    principlesController.fetchData,
+router.get( '/principles/read',
+    principles.read
 );
 
-// router.post( '/update',
-//     principlesController.updatePrinciples,
-//     principlesController.displayData
-// )
+router.post( '/principles/add',
+    principles.add
+)
 
 // router.post( '/create',
 //     principlesController.create,

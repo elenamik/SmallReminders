@@ -1,52 +1,36 @@
 /**
  * Defines server actions, to be performed via routes
  */
-const principlesAPI = require('../principles/crudAPI')
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const Principle=mongoose.model('Principle');
+var ObjectId = require('mongoose').Types.ObjectId; 
 
 /**
  * Gets the 'principles' data for a particular id
  */
-exports.fetchData = async ( req, res, next ) => {
-    console.log("on request",req.user)
-    // principlesAPI.get(req.body.id)
-    // .then( result => {
-    //     req.data=result
-    //     console.log(result)
-    //     next()
-    // }).catch( err => {
-    //     console.log("data query failed within controller",err)
-    //     res.send("error")
-    // }) 
-    const query = {}
-    await Principle.find()
-    res.send("yes")
-
+exports.read = async ( req, res, next ) => {
+    const query = { owner:new ObjectId(req.user._id) }
+    const results = await Principle.find( query )
+    res.send(results)
 }
 
 /**
- * Prints data in GUI
- */
-// //TODO: change to SSR React
-// exports.displayData = (req, res, next) => {
-//     res.send(JSON.stringify(req.data) || "none" )
-// }
-
-/**
  * Adds principle to existing list
-//  */
-// exports.updatePrinciples = (req, res, next) => {
-//     const payload = ['be grateful always']
-//     principlesAPI.add( req.body.id, payload )
-//     .then( result => {
-//         req.data=result
-//         next()
-//     }).catch( err => {
-//         res.send("error",err)
-//     })
-// }
+ */
+exports.add = async (req, res, next) => {
+    try {
+        const principle = new Principle({
+            content:req.body.content,
+            owner: new ObjectId(req.user.id)
+        })
+        const results = await principle.save()
+        res.send(results)
+    }
+    catch (err) {
+        res.send(err)
+    }
+}
 
 
 // exports.create = (req, res, next) => {
