@@ -16,7 +16,6 @@ const mongoDB = require('./utils/mongoDB');
 const PORT = process.env.PORT || 8080 
 const HOST = '0.0.0.0';
 
-
 // App
 const app = express()
 app.get('/', (req, res) => {
@@ -34,8 +33,6 @@ if (process.env.ENV === 'DEV'){
 }
 
 mongoDB.connect()
-
-
 
 app.use(routes);
 

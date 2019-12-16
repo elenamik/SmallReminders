@@ -1,5 +1,4 @@
 var mongoose = require('mongoose')
-
 let Schema = mongoose.Schema
 
 let PrincipleSchema = new Schema(

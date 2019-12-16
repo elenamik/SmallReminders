@@ -14,10 +14,8 @@ router.post( '/principles/add',
     principles.add
 )
 
-// router.post( '/create',
-//     principlesController.create,
-//     principlesController.displayData
-// )
-
+router.post( '/principles/delete',
+    principles.delete
+)
 
 module.exports = router
