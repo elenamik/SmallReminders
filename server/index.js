@@ -1,25 +1,42 @@
-'use strict';
+/**
+ * Entry point for server, sets up middleware, routing
+ */
 
-const express = require('express');
-const mongoClient = require('./mongo')
+'use strict';
+const express = require('express')
 require('dotenv').config()
+console.log("dotenv test",process.env.TEST)
+require('./schema') // must be required before routes
+const routes = require('./routes')
+const bodyParser = require('body-parser')
+const mongoDB = require('./utils/mongoDB');
 
 
 // Constants
-const PORT = process.env.PORT || 8080 ;
+const PORT = process.env.PORT || 8080 
 const HOST = '0.0.0.0';
 
 // App
-const app = express();
+const app = express()
 app.get('/', (req, res) => {
-  res.send('Hello world!! This is Lena, from another branch\n');
-});
+  res.send('Hello world!! This is Lena, from another branch\n')
+})
 
-app.get('/view', (req, res) => {
-  res.send('you will see data here\n');
-});
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
-app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+if (process.env.ENV === 'DEV'){
+  const testUser = require('./testing/testUser.js')
+  app.use(testUser( {idString:'5df79c057f17e507e9a27e8c'} ))
+}
 
-mongoClient()
+mongoDB.connect()
+
+app.use(routes);
+
+
+app.listen(PORT, HOST)
+console.log(`Running on http://${HOST}:${PORT}`)
+
