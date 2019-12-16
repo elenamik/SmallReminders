@@ -54,3 +54,13 @@ exports.removePrinciple = (req, res, next) => {
         res.send("error",err)
     })
 }
+
+exports.create = (req, res, next) => {
+    principlesAPI.create()
+    .then( result => {
+        console.log(result.ops)
+    })
+    .catch( err => {
+        console.log(err)
+    })
+}

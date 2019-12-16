@@ -57,4 +57,18 @@ const remove = async ( params, target ) => {
     return query_result
 }
 
-module.exports = { get, add, remove }
+const create = async ( ) => {
+    creationResult = undefined
+    const collection = MongoDB.getCollection(principlesDB)
+    collection.insertOne({principles:["test"]})
+    .then( result => {
+        console.log("returns result is",result.ops)
+        creationResult=result
+    } )
+    .catch( err => {
+        console.log(err)
+    })
+    return creationResult
+}
+
+module.exports = { get, add, remove, create }

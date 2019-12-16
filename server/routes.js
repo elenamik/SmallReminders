@@ -21,5 +21,10 @@ router.get( '/remove',
     principlesController.displayData
 )
 
+router.get( '/create',
+    principlesController.create,
+    principlesController.displayData
+)
+
 
 module.exports = router;
