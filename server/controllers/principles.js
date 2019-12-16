@@ -1,8 +1,7 @@
 /**
  * Defines server actions, to be performed via routes
  */
-const principlesAPI = require('../principlesAPI')
-const testUser = require('../../testUser')
+const principlesAPI = require('../principles/principlesAPI')
 
 /**
  * Gets the 'principles' data for a particular id
@@ -30,8 +29,8 @@ exports.displayData = (req, res, next) => {
 /**
  * Adds principle to existing list
  */
-exports.addPrinciple = (req, res, next) => {
-    const payload = 'be grateful always'
+exports.updatePrinciples = (req, res, next) => {
+    const payload = ['be grateful always']
     principlesAPI.add( req.body.id, payload )
     .then( result => {
         req.data=result
@@ -41,23 +40,16 @@ exports.addPrinciple = (req, res, next) => {
     })
 }
 
-exports.removePrinciple = (req, res, next) => {
-    const target='no mo'
-    principlesAPI.remove( req.body.id, target )
-    .then( result => {
-        req.data=result
-        next()
-    }).catch( err => {
-        res.send("error",err)
-    })
-}
 
 exports.create = (req, res, next) => {
     principlesAPI.create()
     .then( result => {
         console.log(result.ops)
+        req.data=result
+        next()
     })
     .catch( err => {
         console.log(err)
+        res.send("error",err)
     })
 }

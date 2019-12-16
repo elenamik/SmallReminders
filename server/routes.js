@@ -11,17 +11,12 @@ router.get( '/view',
     principlesController.displayData
 );
 
-router.get( '/add',
-    principlesController.addPrinciple,
+router.post( '/update',
+    principlesController.updatePrinciples,
     principlesController.displayData
 )
 
-router.get( '/remove',
-    principlesController.removePrinciple,
-    principlesController.displayData
-)
-
-router.get( '/create',
+router.post( '/create',
     principlesController.create,
     principlesController.displayData
 )

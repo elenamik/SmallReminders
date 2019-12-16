@@ -1,9 +1,9 @@
 /**
  * CRUD API for Principles Data
  */
-const MongoDB = require('./mongoUtil')
-const principlesDB = require('./config').principlesDB;
-const principlesAttribute = require('./config').principlesAttribute;
+const MongoDB = require('../mongoUtil')
+const principlesDB = require('../config').principlesDB;
+const principlesAttribute = require('../config').principlesAttribute;
 const ObjectId = require('mongodb').ObjectId
 
 
@@ -25,14 +25,14 @@ const get = async ( id ) => {
     return query_result
 }
 
-const add = async ( id , payload ) => {
+const update = async ( id , payload ) => {
     const params={
         _id: ObjectId(id)
     }
     let query_result = undefined
     const collection = MongoDB.getCollection(principlesDB)
     const action = {
-        "$push": {
+        "$set": {
             [principlesAttribute]: payload
         }
     }
@@ -47,31 +47,11 @@ const add = async ( id , payload ) => {
     return query_result
 }
 
-const remove = async ( id, target ) => {
-    const params={
-        _id: ObjectId(id)
-    }
-    let query_result = undefined
-    const collection = MongoDB.getCollection(principlesDB)
-
-    const action = {
-        "$pull": {
-            [principlesAttribute]: target
-        }
-    }
-    await collection.findOneAndUpdate( params, action )
-    .then( result => {
-        query_result=result
-    }).catch( err => {
-        console.log("query error",err)
-    })
-    return query_result
-}
 
 const create = async ( ) => {
     creationResult = undefined
     const collection = MongoDB.getCollection(principlesDB)
-    collection.insertOne({principles:["test"]})
+    await collection.insertOne({principles:["test","testiing"]})
     .then( result => {
         creationResult=result //data stored in result.ops
     } )
@@ -81,4 +61,4 @@ const create = async ( ) => {
     return creationResult
 }
 
-module.exports = { get, add, remove, create }
+module.exports = { get, update, create }
