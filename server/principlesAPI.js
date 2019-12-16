@@ -4,8 +4,13 @@
 const MongoDB = require('./mongoUtil')
 const principlesDB = require('./config').principlesDB;
 const principlesAttribute = require('./config').principlesAttribute;
+const ObjectId = require('mongodb').ObjectId
 
-const get = async ( params ) => {
+
+const get = async ( id ) => {
+    const params={
+        _id: ObjectId(id)
+    }
     let query_result = undefined
     const collection = MongoDB.getCollection(principlesDB)
 
@@ -20,7 +25,10 @@ const get = async ( params ) => {
     return query_result
 }
 
-const add = async ( params, payload ) => {
+const add = async ( id , payload ) => {
+    const params={
+        _id: ObjectId(id)
+    }
     let query_result = undefined
     const collection = MongoDB.getCollection(principlesDB)
     const action = {
@@ -39,7 +47,10 @@ const add = async ( params, payload ) => {
     return query_result
 }
 
-const remove = async ( params, target ) => {
+const remove = async ( id, target ) => {
+    const params={
+        _id: ObjectId(id)
+    }
     let query_result = undefined
     const collection = MongoDB.getCollection(principlesDB)
 
@@ -62,8 +73,7 @@ const create = async ( ) => {
     const collection = MongoDB.getCollection(principlesDB)
     collection.insertOne({principles:["test"]})
     .then( result => {
-        console.log("returns result is",result.ops)
-        creationResult=result
+        creationResult=result //data stored in result.ops
     } )
     .catch( err => {
         console.log(err)

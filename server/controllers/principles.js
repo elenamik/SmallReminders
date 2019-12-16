@@ -8,8 +8,7 @@ const testUser = require('../../testUser')
  * Gets the 'principles' data for a particular id
  */
 exports.fetchData = ( req, res, next ) => {
-    const params = { _id: testUser.id }
-    principlesAPI.get(params)
+    principlesAPI.get(req.body.id)
     .then( result => {
         req.data=result
         console.log(result)
@@ -32,9 +31,8 @@ exports.displayData = (req, res, next) => {
  * Adds principle to existing list
  */
 exports.addPrinciple = (req, res, next) => {
-    const params = {  _id: testUser.id }
     const payload = 'be grateful always'
-    principlesAPI.add( params, payload )
+    principlesAPI.add( req.body.id, payload )
     .then( result => {
         req.data=result
         next()
@@ -44,9 +42,8 @@ exports.addPrinciple = (req, res, next) => {
 }
 
 exports.removePrinciple = (req, res, next) => {
-    const params = { _id: testUser.id }
     const target='no mo'
-    principlesAPI.remove( params, target )
+    principlesAPI.remove( req.body.id, target )
     .then( result => {
         req.data=result
         next()
