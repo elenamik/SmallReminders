@@ -6,16 +6,16 @@
 const express = require('express')
 require('dotenv').config()
 console.log("dotenv test",process.env.TEST)
+require('./schema') // must be required before routes
 const routes = require('./routes')
 const bodyParser = require('body-parser')
-const MongoDB = require('./mongoUtil')
-MongoDB.connectToServer().catch( err => {
-  console.log("connection to db failed")
-})
+const mongoDB = require('./utils/mongoDB');
+
 
 // Constants
 const PORT = process.env.PORT || 8080 
 const HOST = '0.0.0.0';
+
 
 // App
 const app = express()
@@ -27,6 +27,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+if (process.env.ENV === 'DEV'){
+  const testUser = require('./testing/testUser.js')
+  app.use(testUser( {idString:'5df79c057f17e507e9a27e8c'} ))
+}
+
+mongoDB.connect()
+
+
 
 app.use(routes);
 

@@ -1,9 +1,9 @@
 /**
  * CRUD API for Principles Data
  */
-const MongoDB = require('../mongoUtil')
-const principlesDB = require('../config').principlesDB;
-const principlesAttribute = require('../config').principlesAttribute;
+const MongoDB = require('../utils/mongoDB')
+const principlesDB = require('../config/config').principlesDB;
+const principlesAttribute = require('../config/config').principlesAttribute;
 const ObjectId = require('mongodb').ObjectId
 
 
