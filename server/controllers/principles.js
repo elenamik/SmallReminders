@@ -4,14 +4,13 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const Principle = mongoose.model('Principle');
-var ObjectId = require('mongoose').Types.ObjectId; 
 
 /**
  * Gets the 'principles' data by user id
  */
 exports.read = async ( req, res, next ) => {
     try {
-        const query = { owner:new ObjectId(req.user._id) }
+        const query = { owner: user.objectId }
         console.log("reading principles for",JSON.stringify(query))
         const result = await Principle.find( query )
         res.send(result)
@@ -29,7 +28,7 @@ exports.add = async (req, res, next) => {
     try {
         const principle = new Principle({
             content:req.body.content,
-            owner: new ObjectId(req.user._id)
+            owner: user.objectId
         })
         console.log("adding principle",JSON.stringify(principle))
         const result = await principle.save()
@@ -49,7 +48,7 @@ exports.delete = async (req, res, next ) => {
         // Id in the request is the object Id of principle to delete
         const query = {
             _id: new ObjectId(req.body.id),
-            owner: new ObjectId(req.user._id)
+            owner: req.user.objectId
         }
         console.log("deleting principle",JSON.stringify(query))
         const result = await Principle.deleteOne(query)
@@ -64,7 +63,7 @@ exports.update = async (req, res, next ) => {
     try {
         const query = {
             _id: new ObjectId(req.body.id),
-            owner: new ObjectId(req.user._id)
+            owner: req.user.objectId
         }
         const update = {
             content: req.body.content
