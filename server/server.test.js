@@ -10,7 +10,7 @@ const http = require('http');
 const mongoDB = require('./utils/mongoDB');
 let server;
 const log=console.log // use this for logging
-let toDelete;
+let testElement;
 
 // Staging
 beforeAll(done => {
@@ -47,7 +47,8 @@ describe('/POST principles/add/?content', () => {
       expect.objectContaining({
         'success': true
     }))
-    toDelete = res.body.result
+    testElement = res.body.result
+    log('added test element',testElement._id)
   })
 
   it( 'should fail if content not provided', async ( ) => {
@@ -66,19 +67,21 @@ describe('/POST principles/update/?id?content', () => {
   it( 'should delete a principle and return resulting JSON object', async ( ) => {
     const res = await request(server).post('/principles/update')
     .send({
-      id: toDelete._id,
-      content: 'testing update'
+      id: testElement._id,
+      content: 'for testing - update'
     })
     expect(res.body).toEqual(
       expect.objectContaining({
         'success': true
     }))
+    log('updated test element',testElement._id)
+
   })
 
   it( 'should fail if content is not provided', async ( ) => {
     const res = await request(server).post('/principles/update')
     .send({
-      id: toDelete._id,
+      id: testElement._id,
       content: undefined
     })
     expect(res.body).toEqual(
@@ -105,13 +108,15 @@ describe('/POST principles/delete/?id', () => {
   it( 'should delete a principle and return resulting JSON object', async ( ) => {
     const res = await request(server).post('/principles/delete')
     .send({
-      id: toDelete._id
+      id: testElement._id
     })
     expect(res.body).toEqual(
       expect.objectContaining({
         'success': true
       })
     )
+    log('deleted test element',testElement._id)
+
   })
 
   it( 'should fail if delete id not given', async ( ) =>{
