@@ -1,18 +1,21 @@
 /**
- * Defines server actions, to be executes by routes
+ * Defines server actions, to be executed by routes
  */
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const Principle = mongoose.model('Principle');
+const ObjectId = require('../utils/mongoDB').ObjectId
+
 
 /**
- * Gets the 'principles' data by user id
+ * Gets all principles by owner
  */
 exports.read = async ( req, res, next ) => {
     try {
-        const query = { owner: user.objectId }
-        console.log("reading principles for",JSON.stringify(query))
+        const user = req.user
+        const query = { owner: user._id }
         const result = await Principle.find( query )
+        console.log(result)
         res.send(result)
     }
     catch (err) {
@@ -21,14 +24,15 @@ exports.read = async ( req, res, next ) => {
 }
 
 /**
- * Adds principle to existing list
- * identified with owner attribute
+ * Add principle by owner
  */
 exports.add = async (req, res, next) => {
     try {
+        const user = req.user
+        const content = req.body.content
         const principle = new Principle({
-            content:req.body.content,
-            owner: user.objectId
+            content: content,
+            owner: user._id
         })
         console.log("adding principle",JSON.stringify(principle))
         const result = await principle.save()
@@ -40,15 +44,17 @@ exports.add = async (req, res, next) => {
 }
 
 /**
- * Deletes principles by Id
- * validated with owner
+ * Deletes principles by principle ObjectId
+ * validated by owner
  */
 exports.delete = async (req, res, next ) => {
     try {
-        // Id in the request is the object Id of principle to delete
+        const user = req.user
+        const targetId = req.body.id
+        // Id in the request is the ObjectId of principle to delete
         const query = {
-            _id: new ObjectId(req.body.id),
-            owner: req.user.objectId
+            _id: targetId,
+            owner: user._id
         }
         console.log("deleting principle",JSON.stringify(query))
         const result = await Principle.deleteOne(query)
@@ -59,11 +65,17 @@ exports.delete = async (req, res, next ) => {
     }
 }
 
+/**
+ * Updates principle by ObjectId
+ * validated by owner
+ */
 exports.update = async (req, res, next ) => {
     try {
+        const user = req.user
+        const targetId = req.body.id
         const query = {
-            _id: new ObjectId(req.body.id),
-            owner: req.user.objectId
+            _id: targetId,
+            owner: user._id
         }
         const update = {
             content: req.body.content

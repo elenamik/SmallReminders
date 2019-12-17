@@ -28,8 +28,8 @@ app.use(bodyParser.urlencoded({
 }));
 
 if (process.env.ENV === 'DEV'){
-  const testUser = require('./testing/testUser.js')
-  app.use(testUser( {idString:'5df79c057f17e507e9a27e8c'} ))
+  const sampleUser = require('./forDev/sampleUser.js')
+  app.use(sampleUser( {idString:'5df79c057f17e507e9a27e8c'} ))
 }
 
 mongoDB.connect()
