@@ -4,7 +4,6 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const Principle = mongoose.model('Principle');
-const ObjectId = require('../utils/mongoDB').ObjectId
 
 
 /**
