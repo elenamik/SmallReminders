@@ -4,7 +4,7 @@
   "description": "node.js backend to keep track and send messages",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=TEST jest --detectOpenHandles --maxWorkers=4",
+    "test": "NODE_ENV=TEST jest --detectOpenHandles --runInBand",
     "start": "NODE_ENV=DEV nodemon server/index.js"
   },
   "repository": {
