@@ -12,6 +12,8 @@ let server;
 const log=console.log // use this for logging
 let testElement;
 
+require('dotenv').config()
+
 // Staging
 beforeAll(done => {
   console.log = function() {} // disabling regular applicaiton logging in terminal
@@ -26,6 +28,11 @@ afterAll(async () => {
   await mongoDB.close()
 });
 
+// describe('Hello world', () => {
+//   it ('should always pass', () => {
+//     expect(true).toEqual(true)
+//   })
+// })
 
 describe('/GET principles/read/', () => {
   it( 'should return a JSON object with all principles for user', async ( ) => {
