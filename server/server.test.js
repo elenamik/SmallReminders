@@ -3,28 +3,28 @@
  */
 
 // Dependencies
-require('./schema')
-const app = require('./app');
-const request = require('supertest');
-const http = require('http');
-const mongoDB = require('./utils/mongoDB');
-let server;
-const log=console.log // use this for logging
-let testElement;
+// require('./schema')
+// const app = require('./app');
+// const request = require('supertest');
+// const http = require('http');
+// //const mongoDB = require('./utils/mongoDB');
+// let server;
+// const log=console.log // use this for logging
+// let testElement;
 
-// Staging
-beforeAll(done => {
-  console.log = function() {} // disabling regular applicaiton logging in terminal
-  server = http.createServer(app)
-  server.listen(done)
-  mongoDB.connect()
-});
+// // Staging
+// beforeAll(done => {
+//   console.log = function() {} // disabling regular applicaiton logging in terminal
+//   server = http.createServer(app)
+//   server.listen(done)
+//   mongoDB.connect()
+// });
 
-// Tear Down
-afterAll(async () => {
-  await server.close()
-  await mongoDB.close()
-});
+// // Tear Down
+// afterAll(async () => {
+//   await server.close()
+//   await mongoDB.close()
+// });
 
 describe('Hello world', () => {
   it ('should always pass', () => {
