@@ -28,12 +28,11 @@ afterAll(async () => {
   await mongoDB.close()
 });
 
-describe('Hello world', () => {
-  it ('should always pass', () => {
-    expect(true).toEqual(true)
-
-  })
-})
+// describe('Hello world', () => {
+//   it ('should always pass', () => {
+//     expect(true).toEqual(true)
+//   })
+// })
 
 describe('/GET principles/read/', () => {
   it( 'should return a JSON object with all principles for user', async ( ) => {
