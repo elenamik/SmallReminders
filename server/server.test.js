@@ -12,6 +12,10 @@
 // const log=console.log // use this for logging
 // let testElement;
 
+require('dotenv').config()
+console.log(process.env.MONGO_USER)
+console.log("testing output")
+
 // // Staging
 // beforeAll(done => {
 //   console.log = function() {} // disabling regular applicaiton logging in terminal
