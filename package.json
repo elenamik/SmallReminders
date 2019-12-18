@@ -4,7 +4,7 @@
   "description": "node.js backend to keep track and send messages",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=TEST jest --detectOpenHandles",
+    "test": "standard && NODE_ENV=TEST jest --detectOpenHandles",
     "start": "NODE_ENV=DEV nodemon server/index.js"
   },
   "repository": {
@@ -27,6 +27,12 @@
   "devDependencies": {
     "jest": "^24.9.0",
     "nodemon": "^2.0.2",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "standard":"*"
+  },
+  "standard": {
+    "env": {
+      "jest": true
+    }
   }
 }
