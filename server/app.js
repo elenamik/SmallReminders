@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 if (process.env.NODE_ENV === 'DEV' || process.env.NODE_ENV === 'TEST') {
-  require('./forDev/createSomeData')
+  // require('./forDev/createSomeData')
   const sampleUser = require('./forDev/sampleUser.js')
   app.use(sampleUser)
 }
