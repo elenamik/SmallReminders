@@ -3,16 +3,21 @@
  */
 
 // Dependencies
-require('../server/schema')
-const app = require('../server/app')
+const env = require('../utils/env')
+env.loadEnv()
+if (!env.checkEnv()) {
+  console.log('WARNING - .env file not loaded')
+  process.exit(1)
+}
+
+require('../schema')
+const app = require('../app')
 const request = require('supertest')
 const http = require('http')
-const mongoDB = require('../server/utils/mongoDB')
+const mongoDB = require('../utils/mongoDB')
 let server
-const log = console.log // use this for logging
 let testElement
-
-require('dotenv').config()
+const log = console.log // use this for logging
 
 // Staging
 beforeAll(done => {
