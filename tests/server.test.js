@@ -3,11 +3,11 @@
  */
 
 // Dependencies
-require('./schema')
-const app = require('./app')
+require('../server/schema')
+const app = require('../server/app')
 const request = require('supertest')
 const http = require('http')
-const mongoDB = require('./utils/mongoDB')
+const mongoDB = require('../server/utils/mongoDB')
 let server
 const log = console.log // use this for logging
 let testElement
