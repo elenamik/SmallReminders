@@ -18,11 +18,9 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-if (process.env.NODE_ENV === 'DEV' || process.env.NODE_ENV === 'TEST') {
-  // require('./forDev/createSomeData')
-  const sampleUser = require('./forDev/sampleUser.js')
-  app.use(sampleUser)
-}
+// require('./forDev/createSomeData')
+const sampleUser = require('./forDev/sampleUser.js')
+app.use(sampleUser) // temporary, until the log in route works
 
 app.use(routes)
 module.exports = app
