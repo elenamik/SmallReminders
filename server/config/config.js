@@ -1,10 +1,6 @@
 /**
  * Config for application
  */
-
-require('dotenv').config()
-
 module.exports = {
-  mongoURL: `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PW}@smallreminders-q5cgw.mongodb.net/small_reminders_dev?retryWrites=true&w=majority`,
-  principlesAttribute: 'principles'
+  mongoURL: `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PW}@${process.env.MONGO_URL}/${process.env.MONGO_DBNAME}?retryWrites=true&w=majority`
 }
