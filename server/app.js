@@ -19,8 +19,9 @@ app.use(bodyParser.urlencoded({
 }))
 
 if (process.env.NODE_ENV === 'DEV' || process.env.NODE_ENV === 'TEST') {
+  require('./forDev/createSomeData')
   const sampleUser = require('./forDev/sampleUser.js')
-  app.use(sampleUser({ idString: '5df79c057f17e507e9a27e8c' }))
+  app.use(sampleUser)
 }
 
 app.use(routes)
