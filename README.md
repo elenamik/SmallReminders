@@ -12,7 +12,7 @@ It is web app to let you keep a list of your own principles, and let you send yo
 The app runs on Node.js, server rendered React. The infrastructure includes a MongoDB database and is continuously intergrated with Circle CI, jest, git, and automatic deployments on Heroku.
 
 ## Contribute
-To contribute to the project, you can take a look at the [Projects](https://github.com/elenamik/SmallReminders/projects) section. The Road Map section is a high-level view of the current progress, and the seperate issues are broken down into projects.
+To contribute to the project, you can take a look at the [Projects](https://github.com/elenamik/SmallReminders/projects) section. The Road Map section is a high-level view of the current progress, and the Road Map elements are broken down to granular Project Boards
 
 ### Get started
 ```
