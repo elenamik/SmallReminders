@@ -2,9 +2,10 @@ const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 const User = mongoose.model('User')
 const Principle = mongoose.model('Principle')
+const uniqueHash = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 
 const testUser = new User({
-  name: 'testUser-1'
+  name: `testUser-${uniqueHash}`
 })
 
 const principle1 = new Principle({
@@ -21,4 +22,4 @@ testUser.save()
 principle1.save()
 principle2.save()
 
-console.log('saved ?')
+console.log('saved same data')

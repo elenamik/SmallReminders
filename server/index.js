@@ -1,13 +1,13 @@
 /**
  * Entry point for server, sets up middleware, routing
  */
+
+require('dotenv').config()
 const mongoDB = require('./utils/mongoDB')
 mongoDB.connect()
 require('./schema') // must be required before routes
 
 const app = require('./app')
-require('dotenv').config()
-console.log('dotenv test', process.env.TEST)
 
 // Constants
 const PORT = process.env.PORT || 8080

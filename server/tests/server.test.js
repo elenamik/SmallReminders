@@ -3,16 +3,15 @@
  */
 
 // Dependencies
-require('./schema')
-const app = require('./app')
+require('dotenv').config()
+require('../schema')
+const app = require('../app')
 const request = require('supertest')
 const http = require('http')
-const mongoDB = require('./utils/mongoDB')
+const mongoDB = require('../utils/mongoDB')
 let server
-const log = console.log // use this for logging
 let testElement
-
-require('dotenv').config()
+const log = console.log // use this for logging
 
 // Staging
 beforeAll(done => {
