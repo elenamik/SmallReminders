@@ -3,13 +3,7 @@
  */
 
 // Dependencies
-const env = require('../utils/env')
-env.loadEnv()
-if (!env.checkEnv()) {
-  console.log('WARNING - .env file not loaded')
-  process.exit(1)
-}
-
+require('dotenv').config()
 require('../schema')
 const app = require('../app')
 const request = require('supertest')

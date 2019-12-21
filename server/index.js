@@ -2,14 +2,7 @@
  * Entry point for server, sets up middleware, routing
  */
 
-const env = require('./utils/env')
-env.loadEnv()
-if (!env.checkEnv()) {
-  console.log('WARNING - .env file not loaded')
-  console.log('Qutting server')
-  process.exit(1)
-}
-
+require('dotenv').config()
 const mongoDB = require('./utils/mongoDB')
 mongoDB.connect()
 require('./schema') // must be required before routes
