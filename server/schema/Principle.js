@@ -1,5 +1,5 @@
-var mongoose = require('mongoose')
-const Schema = mongoose.Schema
+var mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const PrincipleSchema = new Schema(
   {
@@ -10,6 +10,6 @@ const PrincipleSchema = new Schema(
     },
     content: String
   }
-)
+);
 
-module.exports = mongoose.model('Principle', PrincipleSchema)
+module.exports = mongoose.model('Principle', PrincipleSchema);
