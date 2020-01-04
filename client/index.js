@@ -1,7 +1,10 @@
-function component () {
-  const element = document.createElement('div');
-  element.innerHTML = 'Hello webpack!! :) ?';
-  return element;
-}
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-document.body.appendChild(component());
+ReactDOM.render(
+  <App />,
+  document.getElementById('app')
+);
+
+module.hot.accept();

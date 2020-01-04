@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 // // App
 const app = express();
 app.get('/', (req, res) => {
-  res.send('Hello from the server!\n');
+  res.send('Hello from the server! :P :)\n');
 });
 
 app.use(bodyParser.json());
