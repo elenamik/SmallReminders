@@ -6,9 +6,9 @@
   "scripts": {
     "test": "semistandard && NODE_ENV=TEST jest --detectOpenHandles",
     "start": "npm run start-server & npm run start-client ",
-    "start-server": "NODE_ENV=DEV nodemon server/index.js",
+    "start-server": "NODE_ENV=DEV nodemon src/server/index.js",
     "start-client": "webpack-dev-server --config webpack.dev.js --open --hot",
-    "start-prod": "node server/index.js"
+    "start-prod": "node src/server/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/elenamik/SmallReminders#readme",
   "dependencies": {
+    "axios": "^0.19.0",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongodb": "^3.4.0",

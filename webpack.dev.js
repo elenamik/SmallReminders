@@ -39,8 +39,8 @@ module.exports = merge(common, {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './client/index.html',
-      filename: './index.html'
+      template: './src/client/index.html',
+      filename: 'index.html'
     }),
     new webpack.HotModuleReplacementPlugin()
   ]

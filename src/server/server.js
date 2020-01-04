@@ -5,17 +5,20 @@
 const express = require('express');
 const routes = require('./routes');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 // // App
 const app = express();
-app.get('/', (req, res) => {
-  res.send('Hello from the server! :P :)\n');
-});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(cors());
+
+app.get('/', (req, res) => {
+  res.send('Hello from the server! :P :)\n');
+});
 
 // require('./forDev/createSomeData')
 const sampleUser = require('./forDev/sampleUser.js');

@@ -1,9 +1,8 @@
-// const VueLoaderPlugin = require('vue-loader/lib/plugin')
 // const HTMLWebpackPlugin = require('html-webpack-plugin')
 // const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
-  entry: './client/index.js'
+  entry: './src/client/index.js'
 };
 
 // module.exports = {
