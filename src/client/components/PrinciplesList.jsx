@@ -4,7 +4,6 @@ import Principle from './Principle';
 function PrinciplesList (props) {
   const principles = props.data;
   let list;
-  console.log(principles);
   if (principles) {
     list = principles.map((element, key) => {
       return (
@@ -12,10 +11,6 @@ function PrinciplesList (props) {
       );
     });
   }
-
-  // const list = props.data.map((elem) => {
-  //   console.log(elem);
-  // });
 
   return (
     <div id='principles-list'>
