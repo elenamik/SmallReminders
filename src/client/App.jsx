@@ -3,7 +3,6 @@ import PrinciplesList from './components/PrinciplesList';
 import Description from './components/Description';
 import Header from './components/Header';
 import axios from 'axios';
-
 const url = 'http://localhost:8080/principles/read';
 
 function App () {

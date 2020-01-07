@@ -3,9 +3,10 @@
  */
 
 // Dependencies
+require('babel-polyfill');
 require('dotenv').config();
 require('../schema');
-const app = require('../app');
+const app = require('../server.js');
 const request = require('supertest');
 const http = require('http');
 const mongoDB = require('../utils/mongoDB');
