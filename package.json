@@ -2,11 +2,14 @@
   "name": "smallreminders",
   "version": "1.0.0",
   "description": "node.js backend to keep track and send messages",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "standard && NODE_ENV=TEST jest --detectOpenHandles",
-    "start": "NODE_ENV=DEV nodemon server/index.js",
-    "start-prod": "node server/index.js"
+    "test": "semistandard && NODE_ENV=TEST jest --detectOpenHandles",
+    "start": "npm run dev-server & npm run dev-client ",
+    "dev-client": "webpack-dev-server --config webpack.dev.js --open --hot",
+    "build-client": "webpack --config webpack.prod.js",
+    "dev-server": "NODE_ENV=DEV nodemon src/server/index.js",
+    "prod-server": "node src/server/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,19 +22,36 @@
   },
   "homepage": "https://github.com/elenamik/SmallReminders#readme",
   "dependencies": {
+    "axios": "^0.19.0",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongodb": "^3.4.0",
-    "mongoose": "^5.8.1"
+    "mongoose": "^5.8.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-jsx": "^3.2.4",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "babel-polyfill": "^6.26.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
     "jest": "^24.9.0",
     "nodemon": "^2.0.2",
+    "react-hot-loader": "^4.12.18",
+    "semistandard": "^14.2.0",
     "supertest": "^4.0.2",
-    "standard":"*"
+    "webpack-dev-server": "^3.10.1"
   },
-  "standard": {
+  "semistandard": {
     "env": {
       "jest": true
     }

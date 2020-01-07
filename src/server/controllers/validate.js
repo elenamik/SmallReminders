@@ -1,7 +1,7 @@
 exports.isEmpty = (value) => {
   if (value === undefined || value.length === 0) {
-    return true
+    return true;
   } else {
-    return false
+    return false;
   }
-}
+};
