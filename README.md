@@ -9,7 +9,11 @@ I found myself wishing I had occasional reminders to think about something diffe
 It is web app to let you keep a list of your own principles, and let you send yourself random reminders via text.
 
 ## The Technology
-The app runs on Node.js, server rendered React. The infrastructure includes a MongoDB database and is continuously intergrated with Circle CI, jest, git, and automatic deployments on Heroku.
+The app consists of a node server and a React front end (compiled with webpack and babel). 
+
+The infrastructure includes a MongoDB database and is continuously intergrated with CircleCI and jest. User management is secured and outsourced through Googles' Firebase User Management features.
+
+The node server is automaticlally deployed to Heroku once the master branch is updated (a convenient feature of Heroku). The client is automatically deployed to firebase with CircleCI.
 
 ## Contribute
 To contribute to the project, you can take a look at the [Projects](https://github.com/elenamik/SmallReminders/projects) section. The Road Map section is a high-level view of the current progress, and the Road Map elements are broken down to granular Project Boards
