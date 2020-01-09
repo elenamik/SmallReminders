@@ -1,5 +1,4 @@
-const server = () => {
-  console.log(process.env.NODE_ENV);
+const getServerURL = () => {
   if (process.env.NODE_ENV === 'development') {
     return 'http://localhost:8080/principles/read';
   } else {
@@ -7,4 +6,4 @@ const server = () => {
   }
 };
 
-module.exports = { server };
+module.exports = { getServerURL };
