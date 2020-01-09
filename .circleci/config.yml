@@ -1,6 +1,6 @@
 version: 2.1
 jobs: # collection of steps
-  build:
+  build-job:
     docker: 
       - image: circleci/node:10.16.3 # the primary container, where your job's commands are run
     steps:
@@ -12,5 +12,23 @@ jobs: # collection of steps
       - run:
           name: run test suite
           command: npm test
+  deploy-job:
+    docker:
+      - image: circleci/node:10.16.3 # the primary container, where your job's commands are run
+    working-directory: /dist
+    steps:
+      -run: 
+        name: Deploy Master to Firebase
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 
+workflows:
+  verison: 2
 
+  -deploy:
+    jobs:
+      - build-job
+      - deploy-job:
+        requires: build-job
+        filters:
+          branches:
+            only: master

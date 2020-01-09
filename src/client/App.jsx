@@ -22,6 +22,7 @@ function App () {
   return (
     <div id='app'>
       <Header />
+      <div>New Feature</div>
       <Description />
       <PrinciplesList data={data} />
 
