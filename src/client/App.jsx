@@ -3,13 +3,13 @@ import PrinciplesList from './components/PrinciplesList';
 import Description from './components/Description';
 import Header from './components/Header';
 import axios from 'axios';
-const url = 'http://localhost:8080/principles/read';
+import { getServerURL } from './config/urls';
 
 function App () {
   const [data, setData] = useState(false);
 
   useEffect(() => {
-    axios.get(url)
+    axios.get(getServerURL())
       .then((res) => {
         setData(res.data.result);
       })

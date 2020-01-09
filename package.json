@@ -6,7 +6,7 @@
   "scripts": {
     "test": "semistandard && NODE_ENV=TEST jest --detectOpenHandles",
     "start": "npm run dev-server & npm run dev-client ",
-    "dev-client": "webpack-dev-server --config webpack.dev.js --open --hot",
+    "dev-client": "NODE_ENV=DEV webpack-dev-server --config webpack.dev.js --open --hot",
     "build-client": "webpack --config webpack.prod.js",
     "dev-server": "NODE_ENV=DEV nodemon src/server/index.js",
     "prod-server": "node src/server/index.js"

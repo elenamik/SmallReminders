@@ -6,7 +6,6 @@ require('dotenv').config();
 const mongoDB = require('./utils/mongoDB');
 mongoDB.connect();
 require('./schema'); // must be required before routes
-
 const app = require('./server');
 
 // Constants
