@@ -1,5 +1,9 @@
 # Client 
-The client is build with React, webpack, babel, and sass (mostly to make it easy to change the color scheme). Run `npm run-script dev-client` to start the dev server for the client, and `npm run-script build-client` to generate a prod build.
+The client is built with React, webpack, babel, and sass (mostly to make it easy to change the color scheme).
+
+`npm run-script dev-client` - runs the client development server on its own (without the database / backend connectivity)
+
+`npm run-script build-client` - generates a production build (all code bundled into one js file and an index.html file)
 
 ## Specs:
 ### User logged in:
