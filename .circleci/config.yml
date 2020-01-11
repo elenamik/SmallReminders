@@ -12,10 +12,19 @@ jobs: # collection of steps
       - run:
           name: run test suite
           command: npm test
+      - run:
+          name: compile front end
+          command: npm run-script build-client
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   deploy:
-    docker:
-      - image: circleci/node:10.16.3 # the primary container, where your job's commands are run
+    docker: 
+      - image: circleci/node:10.16.3
     steps:
+      - attach_workspace:
+          at: .
       - run: 
           name: Deploy Master to Firebase
           command: /home/circleci/project/node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
