@@ -12,6 +12,7 @@
   flex-flow: column;
   padding-left: 20%;
   padding-right: 20%;
+  color: $complement-1;
 }
 label {
   color: $primary-4;
@@ -22,6 +23,7 @@ input {
   border-radius: 5px;
   font-size: 1em;
   padding: 2%;
+  min-width: 80%;
 }
 #login-btn {
   color: $primary-1;

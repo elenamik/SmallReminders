@@ -2,10 +2,16 @@
  * Entry point for server, sets up middleware, routing
  */
 'use strict';
-const express = require('express');
-const routes = require('./routes');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const express = require('express');
+const routes = require('./routes');
+
+// Set up User Management with Firebase
+const { initializeFirebaseApp } = require('./utils/firebase');
+const firebaseConfig = require('./config/firebase');
+initializeFirebaseApp(firebaseConfig.firebaseConfig);
+
 // // App
 const app = express();
 

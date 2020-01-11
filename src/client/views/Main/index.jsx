@@ -9,7 +9,7 @@ function Main () {
   const [data, setData] = useState(false);
 
   useEffect(() => {
-    axios.get(getServerURL())
+    axios.get(getServerURL() + '/principles/read')
       .then((res) => {
         setData(res.data.result);
       })
