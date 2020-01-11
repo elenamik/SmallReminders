@@ -25,9 +25,6 @@ jobs: # collection of steps
     steps:
       - attach_workspace:
           at: .
-      - run:
-          name: test
-          command: pwd
       - run: 
           name: Deploy Master to Firebase
           command: /home/circleci/project/node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
@@ -40,3 +37,6 @@ workflows:
       - deploy:
           requires:
             - build
+          filters:
+            branches:
+              only: master

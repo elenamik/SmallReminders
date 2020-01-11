@@ -22,7 +22,7 @@ function App () {
   return (
     <div id='app'>
       <Header />
-      <div>New Feature</div>
+      <div>New Feature 2.0!</div>
       <Description />
       <PrinciplesList data={data} />
 
