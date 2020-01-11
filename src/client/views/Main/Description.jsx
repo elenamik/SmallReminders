@@ -2,7 +2,7 @@ import React from 'react';
 
 function Description () {
   return (
-    <div id='app'>
+    <div id='main'>
       <h3>Welcome To Small Reminders!</h3>
       <p>
       You may be familiar with Ray Dalio's famous concept of principles - lessons you learn in life, and keep with you to influence your future decisions.

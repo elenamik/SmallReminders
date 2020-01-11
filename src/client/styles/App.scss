@@ -1,0 +1,13 @@
+@import './colors.scss';
+body {
+  font-family: 'Libre Baskerville', serif;
+  margin: 0;
+}
+p {
+  line-height: 200%;
+}
+
+.container {
+  padding-left: 5%;
+  padding-right: 5%;
+}
