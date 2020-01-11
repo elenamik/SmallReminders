@@ -12,6 +12,9 @@ jobs: # collection of steps
       - run:
           name: run test suite
           command: npm test
+      - run:
+          name: compile front end
+          command: npm run-script build-client
       - persist_to_workspace:
           root: .
           paths:
