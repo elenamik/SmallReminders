@@ -1,0 +1,20 @@
+@import '../../styles/colors.scss';
+#principle {
+  // properties
+  color: $primary-4;
+  background-color: $primary-1;
+  min-height: 5em;
+  max-height: 7em;
+  min-width: 200px;
+  width: 40%;
+  border-radius: 5px;
+  text-align: center;
+  margin: 1%;
+  padding: 1%;
+
+  //for centering vertically
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}

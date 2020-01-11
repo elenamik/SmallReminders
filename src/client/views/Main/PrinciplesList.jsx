@@ -1,5 +1,5 @@
 import React from 'react';
-import Principle from './Principle';
+import Principle from '../../components/Principle';
 
 function PrinciplesList (props) {
   const principles = props.data;
