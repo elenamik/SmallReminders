@@ -3,6 +3,18 @@
   color: $complement-4;
   background: $complement-1;
   min-height: 70px;
-  padding-left: 5%;
-  padding-top: 1.4em;
+  padding-left: 4%;
+  padding-right: 4%;
+}
+#header-container {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  margin: auto;
+  max-width: 900px;
+}
+
+h1 {
+  align-self: flex-end;
+  font-size: 300%;
 }

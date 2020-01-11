@@ -4,10 +4,17 @@ body {
   margin: 0;
 }
 p {
+  font-family: 'Libre Franklin', sans-serif;
   line-height: 200%;
 }
 
 .container {
   padding-left: 5%;
   padding-right: 5%;
+  max-width: 70%;
+  margin: auto;
+  max-width: 900px;
+}
+button {
+  font-family: 'Libre Franklin', sans-serif;
 }
