@@ -3,23 +3,25 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { getServerURL } from '../../config/urls';
 import './Login.scss';
+import { useHistory } from 'react-router-dom';
 
-function Login () {
+function Login (props) {
+  const history = useHistory();
+
   const { register, handleSubmit, errors } = useForm();
-
   const onSubmit = (data) => {
-    console.log(data);
     axios.post(getServerURL() + '/user/login', {
       email: data.email,
       password: data.password
     }).then(res => {
-      console.log(res);
+      props.setUser(res.data.user);
+      history.push('/');
     }).catch(err => {
       console.log(err);
     });
   };
   return (
-    <div id='login-container'>
+    <div id='button-container'>
       <form id='login-form' onSubmit={handleSubmit(onSubmit)}>
         <label>username</label>
         <input name='email' type='email' ref={register({ required: true })} />

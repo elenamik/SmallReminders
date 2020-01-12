@@ -25,10 +25,12 @@ exports.login = async (req, res, next) => {
   firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password)
     .then(() => {
       res.send({
-        success: true
+        success: true,
+        user: firebase.auth().currentUser
       });
     })
     .catch(err => {
+      console.log(err);
       res.status(500).send(err);
     });
 };

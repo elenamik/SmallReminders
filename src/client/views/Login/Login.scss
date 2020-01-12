@@ -1,18 +1,22 @@
 @import '../../styles/colors.scss';
-#login-container {
+#button-container {
   display: flex;
+  flex-direction: column;
   background-color: $complement-0;
   border-radius: 10px;
   justify-content: center;
-  padding:1em;
   margin:2%;
+  max-width: 70%;
+  margin:auto;
+  margin-top:5%;
 }
 #login-form {
   display: flex;
   flex-flow: column;
-  padding-left: 20%;
-  padding-right: 20%;
+  padding: 5%;
   color: $complement-1;
+  width: 70%;
+  margin:auto;
 }
 label {
   color: $primary-4;

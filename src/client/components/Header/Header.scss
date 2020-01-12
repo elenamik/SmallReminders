@@ -3,8 +3,7 @@
   color: $complement-4;
   background: $complement-1;
   min-height: 70px;
-  padding-left: 4%;
-  padding-right: 4%;
+  padding: 1% 4% 1% 4%;
 }
 #header-container {
   display: flex;
@@ -13,8 +12,31 @@
   margin: auto;
   max-width: 900px;
 }
-
-h1 {
+#header-title {
   align-self: flex-end;
   font-size: 300%;
+  cursor: pointer;
+}
+#header-side-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 30%;
+}
+.header-button {
+  text-decoration: none;
+  color: $primary-4;
+  background-color: $complement-0;
+  border-radius: 10px;
+  padding:1em;
+  margin:2%;
+  min-width: 70%;
+  text-align: center;
+}
+.header-button:hover {
+  background-color: $complement-3;
+}
+#logout-button {
+  background-color: $primary-3;
+  color: $primary-1;
 }
