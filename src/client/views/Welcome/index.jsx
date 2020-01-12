@@ -3,9 +3,9 @@ import PrinciplesList from './PrinciplesList';
 import Description from './Description';
 import axios from 'axios';
 import { getServerURL } from '../../config/urls';
-import './Main.scss';
+import './Welcome.scss';
 
-function Main () {
+function Welcome () {
   const [data, setData] = useState(false);
 
   useEffect(() => {
@@ -27,4 +27,4 @@ function Main () {
   );
 }
 
-export default Main;
+export default Welcome;
