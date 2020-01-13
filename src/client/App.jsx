@@ -1,20 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Welcome from './views/Welcome/';
 import Register from './views/Register/';
 import Login from './views/Login';
-
+import './styles/App.scss';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
-import './styles/App.scss';
+
+// for development - to log in a test user automatically
+import { autoLogin } from './utils/login';
 
 function App () {
   const [user, setUser] = useState(false);
-  console.log('user is', user);
+  const autoLogInUser = username => {
+    autoLogin(username, setUser);
+  };
+
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      autoLogInUser('testuser1');
+    }
+  }, []);
+
   return (
     <div id='app'>
       <Router>
@@ -28,7 +38,7 @@ function App () {
               <Login setUser={setUser} />
             </Route>
             <Route path='/register'>
-              <Register />
+              <Register setUser={setUser} />
             </Route>
           </Switch>
         </div>

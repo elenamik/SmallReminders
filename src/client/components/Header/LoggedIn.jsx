@@ -10,7 +10,7 @@ function LoggedIn (props) {
 
   return (
     <>
-      Welcome {props.user.email}
+      Logged in as: {props.user.email}
       <button className='header-button' id='logout-button' onClick={handleClick}>Log Out</button>
     </>
   );

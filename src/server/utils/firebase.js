@@ -3,7 +3,6 @@
 const firebase = require('firebase/app');
 
 const initializeFirebaseApp = (config) => {
-  console.log(config);
   return firebase.initializeApp(config);
 };
 
