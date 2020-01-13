@@ -6,11 +6,14 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
 const routes = require('./routes');
+const env = process.env.NODE_ENV;
 
 // Set up User Management with Firebase
 const { initializeFirebaseApp } = require('./utils/firebase');
 const firebaseConfig = require('./config/firebase');
-initializeFirebaseApp(firebaseConfig.firebaseConfig);
+(env === 'production' || env === 'PROD')
+  ? initializeFirebaseApp(firebaseConfig.firebaseConfigPROD)
+  : initializeFirebaseApp(firebaseConfig.firebaseConfigDEV);
 
 // // App
 const app = express();
