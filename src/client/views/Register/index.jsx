@@ -15,7 +15,7 @@ function Register (props) {
       password: data.password
     }).then(res => {
       props.setUser(res.data.user);
-      history.push('/');
+      history.push('/dashboard');
     }).catch(err => {
       setUserError(true);
       console.log(err);

@@ -9,32 +9,11 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
-  useHistory
+  Redirect
 } from 'react-router-dom';
 
 // for development - to log in a test user automatically
 import { autoLogin } from './utils/login';
-import { _userWithOptions } from 'firebase-functions/lib/providers/auth';
-
-// function PrivateRoute({ children, isAuthenticated, ...rest }) {
-//   return (
-//     <Route
-//       {...rest}
-//       render={({ location }) =>
-//         isAuthenticated ? (
-//           children
-//         ) : (
-//           <Redirect
-//             to={{
-//               pathname: '/login',
-//               state: { from: location }
-//             }}
-//           />
-//         )}
-//     />
-//   );
-// }
 
 function App () {
   const [user, setUser] = useState(false);
@@ -42,11 +21,29 @@ function App () {
     autoLogin(username, setUser);
   };
 
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      autoLogInUser('testuser1');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (process.env.NODE_ENV === 'development') {
+  //     autoLogInUser('testuser1');
+  //   }
+  // }, []);
+
+  function PrivateRoute ({ children, ...rest }) {
+    return (
+      <Route
+        {...rest}
+        render={({ location }) =>
+          user ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: '/login',
+                state: { from: location }
+              }}
+            />)}
+      />
+    );
+  }
 
   return (
     <div id='app'>
@@ -63,9 +60,9 @@ function App () {
             <Route path='/register'>
               <Register setUser={setUser} />
             </Route>
-            <Route>
+            <PrivateRoute path='/dashboard'>
               <Dashboard />
-            </Route>
+            </PrivateRoute>
           </Switch>
           
         </div>
