@@ -15,7 +15,7 @@ function Login (props) {
       password: data.password
     }).then(res => {
       props.setUser(res.data.user);
-      history.push('/');
+      history.push('/dashboard');
     }).catch(err => {
       console.log(err);
     });
