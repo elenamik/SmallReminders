@@ -12,11 +12,7 @@ const cookieParser = require('cookie-parser');
 
 // Set up User Management with Firebase
 const { initializeFirebaseApp } = require('./utils/firebase');
-const firebaseConfig = require('./config/firebase');
-(env === 'production' || env === 'PROD')
-  ? initializeFirebaseApp(firebaseConfig.firebaseConfigPROD)
-  : initializeFirebaseApp(firebaseConfig.firebaseConfigDEV);
-
+initializeFirebaseApp(env);
 // // App
 const app = express();
 
