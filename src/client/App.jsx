@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Header from './components/Header';
-import Welcome from './views/Welcome/';
-import Register from './views/Register/';
+import Welcome from './views/Welcome';
+import Register from './views/Register';
 import Login from './views/Login';
 import Dashboard from './views/Dashboard';
+import { getServerURL } from './config/urls';
 import './styles/App.scss';
 import {
   BrowserRouter as Router,
@@ -12,20 +14,26 @@ import {
   Redirect
 } from 'react-router-dom';
 
-// for development - to log in a test user automatically
-import { autoLogin } from './utils/login';
-
 function App () {
   const [user, setUser] = useState(false);
-  const autoLogInUser = username => {
-    autoLogin(username, setUser);
-  };
+  const [autoLoginEnabled, setAutoLoginEnabled] = useState(true);
 
-  // useEffect(() => {
-  //   if (process.env.NODE_ENV === 'development') {
-  //     autoLogInUser('testuser1');
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (window.localStorage.getItem('token') === 'undefined') {
+      console.log('no token found in local storage');
+    } else if (autoLoginEnabled) {
+      console.log('attempting auto login in from local storage');
+      console.log('token is', window.localStorage.getItem('token'));
+      axios.post(getServerURL() + '/user/loginWithToken', {
+        token: window.localStorage.getItem('token')
+      }).then(res => {
+        setUser(res.data.user);
+        setAutoLoginEnabled(false);
+      }).catch(err => {
+        console.log(err);
+      });
+    }
+  }, []);
 
   function PrivateRoute ({ children, ...rest }) {
     return (
@@ -64,7 +72,6 @@ function App () {
               <Dashboard />
             </PrivateRoute>
           </Switch>
-          
         </div>
       </Router>
     </div>

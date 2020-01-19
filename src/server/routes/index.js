@@ -8,6 +8,7 @@ const principles = require('../controllers/principles');
 const users = require('../controllers/users');
 
 router.get('/principles/read',
+  users.checkIfAuthenticated,
   principles.read
 );
 
@@ -30,6 +31,14 @@ router.post('/user/create',
 
 router.post('/user/login',
   users.login
+);
+
+router.post('/user/loginWithToken',
+  users.loginWithToken
+);
+
+router.post('/user/logout',
+  users.logout
 );
 
 module.exports = router;

@@ -2,11 +2,13 @@
  * Entry point for server, sets up middleware, routing
  */
 'use strict';
+const env = process.env.NODE_ENV;
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
 const routes = require('./routes');
-const env = process.env.NODE_ENV;
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 // Set up User Management with Firebase
 const { initializeFirebaseApp } = require('./utils/firebase');
@@ -23,6 +25,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cors());
+app.use(session({ secret: 'shh' }));
+app.use(cookieParser());
 
 app.get('/', (req, res) => {
   res.send('Hello from the server! :P :)\n');

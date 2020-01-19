@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PrinciplesList from './PrinciplesList';
+import PrinciplesList from '../../components/PrinciplesList';
 import Description from './Description';
 import axios from 'axios';
 import { getServerURL } from '../../config/urls';

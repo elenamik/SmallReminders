@@ -1,3 +1,4 @@
 node_modules
 .env
 dist
+firebase-service-acct-key.json

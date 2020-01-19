@@ -10,6 +10,7 @@ const isEmpty = require('./validate').isEmpty;
  * Gets all principles by owner
  */
 exports.read = async (req, res, next) => {
+  console.log(req.session);
   try {
     const user = req.user;
     const query = { owner: user._id };

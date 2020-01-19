@@ -9,17 +9,20 @@ function Login (props) {
   const history = useHistory();
 
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = (data) =>
     axios.post(getServerURL() + '/user/login', {
       email: data.email,
       password: data.password
     }).then(res => {
+      console.log('login response', res);
       props.setUser(res.data.user);
+      window.localStorage.setItem('token', res.data.idToken);
+      console.log('token in local storage set to', window.localStorage.getItem('token'));
       history.push('/dashboard');
     }).catch(err => {
       console.log(err);
     });
-  };
+
   return (
     <div id='button-container'>
       <form id='login-form' onSubmit={handleSubmit(onSubmit)}>
