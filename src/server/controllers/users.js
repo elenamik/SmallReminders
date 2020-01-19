@@ -67,23 +67,13 @@ exports.login = async (req, res, next) => {
     });
 };
 
-// exports.setSession = async (req, res, next) => {
-//   console.log()
-//   const token = firebase.auth().currentUser.getIdToken(true);
-//   console.log('token in session', token);
-//   res.send({
-//     success: true,
-//     user: req.user,
-//     session: req.session
-//   });
-// };
-
 exports.logout = async (req, res, next) => {
   firebase.auth().signOut();
 };
 
 exports.checkIfAuthenticated = async (req, res, next) => {
-  if (firebase.auth().currentUser) {
+  console.log('uid', req.body.uid);
+  if (req.body.uid) {
     next();
   } else {
     res.status(500).send('authentication failed');

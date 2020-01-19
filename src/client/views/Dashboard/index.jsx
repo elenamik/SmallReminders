@@ -3,11 +3,13 @@ import axios from 'axios';
 import { getServerURL } from '../../config/urls';
 import PrinciplesList from '../../components/PrinciplesList';
 
-function Dashboard () {
+function Dashboard (props) {
   const [data, setData] = useState(false);
-
+  console.log('uid in gui', props.user.uid);
   useEffect(() => {
-    axios.get(getServerURL() + '/principles/read')
+    axios.post(getServerURL() + '/principles/read', {
+      uid: props.user.uid
+    })
       .then((res) => {
         setData(res.data.result);
       })

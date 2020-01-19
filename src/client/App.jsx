@@ -69,7 +69,7 @@ function App () {
               <Register setUser={setUser} />
             </Route>
             <PrivateRoute path='/dashboard'>
-              <Dashboard />
+              <Dashboard user={user} />
             </PrivateRoute>
           </Switch>
         </div>

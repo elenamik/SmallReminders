@@ -7,7 +7,7 @@ var router = express.Router();
 const principles = require('../controllers/principles');
 const users = require('../controllers/users');
 
-router.get('/principles/read',
+router.post('/principles/read',
   users.checkIfAuthenticated,
   principles.read
 );

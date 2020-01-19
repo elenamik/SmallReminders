@@ -12,11 +12,11 @@ const http = require('http');
 const mongoDB = require('../utils/mongoDB');
 let server;
 let testElement;
-const log = console.log; // use this for logging
+// const log = console.log; // use this for logging
 
 // Staging
 beforeAll(done => {
-  console.log = function () {}; // disabling regular applicaiton logging in terminal
+  // console.log = function () {}; // disabling regular applicaiton logging in terminal
   server = http.createServer(app);
   server.listen(done);
   mongoDB.connect();
@@ -28,15 +28,11 @@ afterAll(async () => {
   await mongoDB.close();
 });
 
-// describe('Hello world', () => {
-//   it ('should always pass', () => {
-//     expect(true).toEqual(true)
-//   })
-// })
-
-describe('/GET principles/read/', () => {
+describe('/POST principles/read/', () => {
   it('should return a JSON object with all principles for user', async () => {
-    const res = await request(server).get('/principles/read');
+    const res = await request(server).post('/principles/read')
+      .send({ uid: '970Wm23kRRPQ1ob8ZW1yRX7D2nw2' });
+    console.log(res);
     expect(res.body).toEqual(
       expect.objectContaining({
         success: true
@@ -55,7 +51,7 @@ describe('/POST principles/add/?content', () => {
         success: true
       }));
     testElement = res.body.result;
-    log('added test element', testElement._id);
+    console.log('added test element', testElement._id);
   });
 
   it('should fail if content not provided', async () => {
@@ -81,7 +77,7 @@ describe('/POST principles/update/?id?content', () => {
       expect.objectContaining({
         success: true
       }));
-    log('updated test element', testElement._id);
+    console.log('updated test element', testElement._id);
   });
 
   it('should fail if content is not provided', async () => {
@@ -120,7 +116,7 @@ describe('/POST principles/delete/?id', () => {
         success: true
       })
     );
-    log('deleted test element', testElement._id);
+    console.log('deleted test element', testElement._id);
   });
 
   it('should fail if delete id not given', async () => {
@@ -133,7 +129,11 @@ describe('/POST principles/delete/?id', () => {
         success: false
       })
     );
-  }
-
-  );
+  });
 });
+
+// describe('Hello world', () => {
+//   it ('should always pass', () => {
+//     expect(true).toEqual(true)
+//   })
+// })
