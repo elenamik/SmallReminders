@@ -21,7 +21,8 @@ require('firebase/auth');
 exports.create = async (req, res, next) => {
   console.log('creating user', req.body.email);
   firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password)
-    .then(() => {
+    .then((user) => {
+      req.user = user;
       next();
     })
     .catch(err => {

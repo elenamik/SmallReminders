@@ -19,7 +19,7 @@ beforeAll(async (done) => {
   await mongoDB.connect();
   await request(server).post('/user/create')
     .send({
-      email: `fortesting_${Math.random().toString(36).substr(2, 5)}@email.com1`,
+      email: `fortesting_${Math.random().toString(36).substr(2, 5)}@email.com`,
       password: 'fakepassword'
     })
     .then(() => {

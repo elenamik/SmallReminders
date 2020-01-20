@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const Principle = mongoose.model('Principle');
 const isEmpty = require('./validate').isEmpty;
+// const sample = require('../constants/sample.json');
 
 /**
  * Gets all principles by owner
@@ -128,3 +129,32 @@ exports.update = async (req, res, next) => {
     });
   }
 };
+
+// exports.addGeneric = async (req, res, next) => {
+//   try {
+//     const user = req.user;
+//     console.log(sample);
+//     const principlesArray = sample.forEach((entry) => {
+//       console.log(entry);
+//       return (new Principle({
+//         content: entry.content,
+//         owner: user.uid
+//       })
+//       );
+//     });
+//     console.log(JSON.stringify(principlesArray));
+
+//     console.log('adding principle', JSON.stringify(principle));
+//     const result = await principle.save();
+//     res.send({
+//       success: true,
+//       result
+//     });
+//   } catch (err) {
+//     console.log('got error', String(err));
+//     res.send({
+//       success: false,
+//       error: String(err)
+//     });
+//   }
+// };
