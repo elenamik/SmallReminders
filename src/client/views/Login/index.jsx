@@ -14,10 +14,7 @@ function Login (props) {
       email: data.email,
       password: data.password
     }).then(res => {
-      console.log('login response', res);
       props.setUser(res.data.user);
-      window.localStorage.setItem('token', res.data.idToken);
-      console.log('token in local storage set to', window.localStorage.getItem('token'));
       history.push('/dashboard');
     }).catch(err => {
       console.log(err);

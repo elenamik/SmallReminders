@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
 const routes = require('./routes');
-const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
 // Set up User Management with Firebase
@@ -21,7 +20,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cors());
-app.use(session({ secret: 'shh' }));
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
@@ -29,8 +27,8 @@ app.get('/', (req, res) => {
 });
 
 // require('./forDev/createSomeData')
-const sampleUser = require('./forDev/sampleUser.js');
-app.use(sampleUser); // temporary, until the log in route works
+// const sampleUser = require('./forDev/sampleUser.js');
+// app.use(sampleUser); // temporary, until the log in route works
 
 app.use(routes);
 module.exports = app;

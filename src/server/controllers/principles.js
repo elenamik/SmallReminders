@@ -10,10 +10,9 @@ const isEmpty = require('./validate').isEmpty;
  * Gets all principles by owner
  */
 exports.read = async (req, res, next) => {
-  console.log(req.session);
   try {
     const user = req.user;
-    const query = { owner: user._id };
+    const query = { owner: user.uid };
     console.log('reading principles for ', JSON.stringify(query));
     const result = await Principle.find(query);
     res.send({
@@ -35,14 +34,14 @@ exports.add = async (req, res, next) => {
   try {
     const user = req.user;
     const content = req.body.content;
-    console.log('conent is', content);
+    console.log('content is', content);
     if (isEmpty(content)) {
       throw new Error('expected non empty value for content');
     }
 
     const principle = new Principle({
       content: content,
-      owner: user._id
+      owner: user.uid
     });
     console.log('adding principle', JSON.stringify(principle));
     const result = await principle.save();
@@ -74,7 +73,7 @@ exports.delete = async (req, res, next) => {
     // Id in the request is the ObjectId of principle to delete
     const query = {
       _id: targetId,
-      owner: user._id
+      owner: user.uid
     };
     console.log('deleting principle', JSON.stringify(query));
     const result = await Principle.deleteOne(query);
@@ -106,10 +105,9 @@ exports.update = async (req, res, next) => {
     if (isEmpty(targetId) || isEmpty(content)) {
       throw new Error('expected non empty value for update id and content');
     }
-
     const query = {
       _id: targetId,
-      owner: user._id
+      owner: user.uid
     };
     const update = {
       content

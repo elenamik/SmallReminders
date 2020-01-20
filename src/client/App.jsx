@@ -16,19 +16,20 @@ import {
 
 function App () {
   const [user, setUser] = useState(false);
-  const [autoLoginEnabled, setAutoLoginEnabled] = useState(true);
+  const [autoSignInAttempted, setAutoSignInAttempted] = useState(false);
 
   useEffect(() => {
-    if (window.localStorage.getItem('token') === 'undefined') {
-      console.log('no token found in local storage');
-    } else if (autoLoginEnabled) {
-      console.log('attempting auto login in from local storage');
-      console.log('token is', window.localStorage.getItem('token'));
-      axios.post(getServerURL() + '/user/loginWithToken', {
-        token: window.localStorage.getItem('token')
+    if (autoSignInAttempted) {
+      // return
+    } else {
+      setAutoSignInAttempted(true);
+      axios.post(getServerURL() + '/user/checkAuth', {
       }).then(res => {
-        setUser(res.data.user);
-        setAutoLoginEnabled(false);
+        if (res.data.user) {
+          setUser(res.data.user);
+        } else {
+          setUser(null);
+        }
       }).catch(err => {
         console.log(err);
       });
@@ -36,6 +37,7 @@ function App () {
   }, []);
 
   function PrivateRoute ({ children, ...rest }) {
+    console.log('checking user for private route');
     return (
       <Route
         {...rest}

@@ -5,7 +5,6 @@ import PrinciplesList from '../../components/PrinciplesList';
 
 function Dashboard (props) {
   const [data, setData] = useState(false);
-  console.log('uid in gui', props.user.uid);
   useEffect(() => {
     axios.post(getServerURL() + '/principles/read', {
       uid: props.user.uid
