@@ -27,7 +27,7 @@ npm start
 <make your changes>
 open pull request (will automatically run tests)
 ```
-*note*: you will need to create a ```.env``` file in your root directory with the below values. This will make the connection string for MongoDB.
+*note*: you will need to manually create a ```.env``` file in your root directory with the below values. This will make the connection string for MongoDB.
 ```
 MONGO_URL=<url to MongoDB>
 MONGO_USER=<database username>

@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const Principle = mongoose.model('Principle');
 const isEmpty = require('./validate').isEmpty;
+// const sample = require('../constants/sample.json');
 
 /**
  * Gets all principles by owner
@@ -12,7 +13,7 @@ const isEmpty = require('./validate').isEmpty;
 exports.read = async (req, res, next) => {
   try {
     const user = req.user;
-    const query = { owner: user._id };
+    const query = { owner: user.uid };
     console.log('reading principles for ', JSON.stringify(query));
     const result = await Principle.find(query);
     res.send({
@@ -34,14 +35,14 @@ exports.add = async (req, res, next) => {
   try {
     const user = req.user;
     const content = req.body.content;
-    console.log('conent is', content);
+    console.log('content is', content);
     if (isEmpty(content)) {
       throw new Error('expected non empty value for content');
     }
 
     const principle = new Principle({
       content: content,
-      owner: user._id
+      owner: user.uid
     });
     console.log('adding principle', JSON.stringify(principle));
     const result = await principle.save();
@@ -73,7 +74,7 @@ exports.delete = async (req, res, next) => {
     // Id in the request is the ObjectId of principle to delete
     const query = {
       _id: targetId,
-      owner: user._id
+      owner: user.uid
     };
     console.log('deleting principle', JSON.stringify(query));
     const result = await Principle.deleteOne(query);
@@ -105,10 +106,9 @@ exports.update = async (req, res, next) => {
     if (isEmpty(targetId) || isEmpty(content)) {
       throw new Error('expected non empty value for update id and content');
     }
-
     const query = {
       _id: targetId,
-      owner: user._id
+      owner: user.uid
     };
     const update = {
       content
@@ -129,3 +129,32 @@ exports.update = async (req, res, next) => {
     });
   }
 };
+
+// exports.addGeneric = async (req, res, next) => {
+//   try {
+//     const user = req.user;
+//     console.log(sample);
+//     const principlesArray = sample.forEach((entry) => {
+//       console.log(entry);
+//       return (new Principle({
+//         content: entry.content,
+//         owner: user.uid
+//       })
+//       );
+//     });
+//     console.log(JSON.stringify(principlesArray));
+
+//     console.log('adding principle', JSON.stringify(principle));
+//     const result = await principle.save();
+//     res.send({
+//       success: true,
+//       result
+//     });
+//   } catch (err) {
+//     console.log('got error', String(err));
+//     res.send({
+//       success: false,
+//       error: String(err)
+//     });
+//   }
+// };

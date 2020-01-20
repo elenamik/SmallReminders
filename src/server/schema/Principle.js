@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const PrincipleSchema = new Schema(
   {
     owner: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: 'User',
       required: true
     },

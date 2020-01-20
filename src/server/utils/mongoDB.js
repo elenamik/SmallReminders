@@ -3,7 +3,7 @@
  */
 
 var mongoose = require('mongoose');
-const uri = require('../config/config').mongoURL;
+const uri = require('../config/mongo').mongoURL;
 
 const connect = () => {
   return mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });

@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import PrinciplesList from './PrinciplesList';
-import Description from './Description';
 import axios from 'axios';
 import { getServerURL } from '../../config/urls';
-import './Main.scss';
+import PrinciplesList from '../../components/PrinciplesList';
 
-function Main () {
+function Dashboard (props) {
   const [data, setData] = useState(false);
-
   useEffect(() => {
-    axios.get(getServerURL())
+    axios.post(getServerURL() + '/principles/read', {
+      uid: props.user.uid
+    })
       .then((res) => {
         setData(res.data.result);
       })
@@ -21,10 +20,10 @@ function Main () {
 
   return (
     <div className='container'>
-      <Description />
+      This is the Dashboard - you will only see it if you are logged in.
       <PrinciplesList data={data} />
     </div>
   );
 }
 
-export default Main;
+export default Dashboard;
