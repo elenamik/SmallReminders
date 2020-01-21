@@ -14,6 +14,7 @@ function Register (props) {
       email: data.email,
       password: data.password
     }).then(res => {
+      console.log(res);
       props.setUser(res.data.user);
       history.push('/dashboard');
     }).catch(err => {

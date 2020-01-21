@@ -23,7 +23,7 @@ exports.read = async (req, res, next) => {
   } catch (err) {
     res.send({
       success: false,
-      error: String(err)
+      message: String(err)
     });
   }
 };
@@ -54,7 +54,7 @@ exports.add = async (req, res, next) => {
     console.log('got error', String(err));
     res.send({
       success: false,
-      error: String(err)
+      message: String(err)
     });
   }
 };
@@ -88,7 +88,7 @@ exports.delete = async (req, res, next) => {
   } catch (err) {
     res.send({
       success: false,
-      error: String(err)
+      message: String(err)
     });
   }
 };
@@ -125,7 +125,7 @@ exports.update = async (req, res, next) => {
   } catch (err) {
     res.send({
       success: false,
-      error: String(err)
+      message: String(err)
     });
   }
 };

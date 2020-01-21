@@ -26,7 +26,8 @@ exports.create = async (req, res, next) => {
       next();
     })
     .catch(err => {
-      res.status(500).send(err);
+      console.log('create user error', err);
+      res.send({ success: false, message: err });
     });
 };
 
@@ -43,6 +44,10 @@ exports.login = (req, res, next) => {
     })
     .catch(err => {
       console.log('login error', err);
+      res.send({
+        success: false,
+        message: err
+      });
     });
 };
 
@@ -81,6 +86,6 @@ exports.delete = async (req, res, next) => {
     })
     .catch((err) => {
       console.log(err);
-      res.send({ success: false, err });
+      res.send({ success: false, message: err });
     });
 };
