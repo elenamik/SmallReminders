@@ -45,7 +45,7 @@ function App () {
   }, []);
 
   function AppWrapper () {
-    if (loading) {
+    if (!user && loading) {
       return <Loader />;
     } else if (!user) {
       return (
