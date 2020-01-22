@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from './components/Header';
+import Loader from './components/Loader';
 import Welcome from './views/Welcome';
 import Register from './views/Register';
 import Login from './views/Login';
@@ -15,18 +16,24 @@ import {
 } from 'react-router-dom';
 
 function App () {
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(false);
   const [autoSignInAttempted, setAutoSignInAttempted] = useState(false);
 
   useEffect(() => {
+    console.log('using effect to login user');
     if (autoSignInAttempted) {
+      console.log('already attempted');
       // return
     } else {
-      setAutoSignInAttempted(true);
+      console.log('logging in user');
+      setLoading(true);
       axios.post(getServerURL() + '/user/checkAuth', {
       }).then(res => {
         if (res.data.user) {
           setUser(res.data.user);
+          setAutoSignInAttempted(true);
+          setLoading(false);
         } else {
           setUser(null);
         }
@@ -34,25 +41,23 @@ function App () {
         console.log(err);
       });
     }
+    setAutoSignInAttempted(true);
   }, []);
 
-  function PrivateRoute ({ children, ...rest }) {
-    console.log('checking user for private route');
-    return (
-      <Route
-        {...rest}
-        render={({ location }) =>
-          user ? (
-            children
-          ) : (
-            <Redirect
-              to={{
-                pathname: '/login',
-                state: { from: location }
-              }}
-            />)}
-      />
-    );
+  function AppWrapper () {
+    if (loading) {
+      return <Loader />;
+    } else if (!user) {
+      return (
+        <Redirect to={{ pathname: '/login' }} />
+      );
+    } else {
+      return (
+        <Route exact path='/dashboard'>
+          <Dashboard user={user} />
+        </Route>
+      );
+    }
   }
 
   return (
@@ -70,9 +75,9 @@ function App () {
             <Route path='/register'>
               <Register setUser={setUser} />
             </Route>
-            <PrivateRoute path='/dashboard'>
+            <AppWrapper path='/dashboard'>
               <Dashboard user={user} />
-            </PrivateRoute>
+            </AppWrapper>
           </Switch>
         </div>
       </Router>
