@@ -5,7 +5,34 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const Principle = mongoose.model('Principle');
 const isEmpty = require('./validate').isEmpty;
-// const sample = require('../constants/sample.json');
+
+/**
+ * Takes an array of the form:
+ * [
+ * { content: 'xxxx'}, { content: 'yyyy'}
+ * ]
+ */
+exports.add = async (req, res, next) => {
+  try {
+    const uid = req.body.uid;
+    const content = req.body.content;
+    const principlesArray = content.map((entry, key) => {
+      if (isEmpty(entry.content)) {
+        throw new Error('expected non empty value for content');
+      }
+      return new Principle({
+        content: entry.content,
+        owner: uid
+      });
+    });
+    console.log(`inserting principles for ${uid}`, principlesArray);
+    await Principle.collection.insertMany(principlesArray);
+    res.send({ success: true });
+  } catch (err) {
+    console.log('principles.add error', err);
+    res.send({ success: false, message: err });
+  }
+};
 
 /**
  * Gets all principles by owner
@@ -21,37 +48,6 @@ exports.read = async (req, res, next) => {
     });
   } catch (err) {
     console.log('error fetching principles', err);
-    res.send({
-      success: false,
-      message: String(err)
-    });
-  }
-};
-
-/**
- * Add principle by owner
- */
-exports.add = async (req, res, next) => {
-  try {
-    const uid = req.body.uid;
-    const content = req.body.content;
-    console.log('content is', content);
-    if (isEmpty(content)) {
-      throw new Error('expected non empty value for content');
-    }
-
-    const principle = new Principle({
-      content: content,
-      owner: uid
-    });
-    console.log('adding principle', JSON.stringify(principle));
-    const result = await principle.save();
-    res.send({
-      success: true,
-      result
-    });
-  } catch (err) {
-    console.log('got error', String(err));
     res.send({
       success: false,
       message: String(err)
@@ -90,6 +86,17 @@ exports.delete = async (req, res, next) => {
       success: false,
       message: String(err)
     });
+  }
+};
+
+// not tested - but it is used to bulk delete when testing creating of new user
+exports.deleteAll = async (req, res, next) => {
+  try {
+    await Principle.deleteAll({ owner: req.body.uid });
+    res.send({ success: true });
+  } catch (err) {
+    console.log('bulk delete failed', err);
+    res.send({ success: false, message: err });
   }
 };
 

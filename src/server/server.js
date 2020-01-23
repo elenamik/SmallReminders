@@ -19,7 +19,7 @@ app.use(cors());
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
-  res.send('Hello from the server! :P :)\n');
+  res.send('Hello from the server! :)\n');
 });
 
 app.use(routes);

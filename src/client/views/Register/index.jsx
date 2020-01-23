@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import firebase from 'firebase/app';
+import { getServerURL } from '../../config/urls';
+import axios from 'axios';
 
 function Register (props) {
   const { register, handleSubmit, errors } = useForm();
@@ -10,8 +12,19 @@ function Register (props) {
 
   const onSubmit = (data) => {
     firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
-      .then((user) => {
+      .then((response) => {
+        const user = response.user;
         props.setUser(user);
+        console.log('user obtained from firebase auth', user, typeof (user.uid));
+        axios.post(getServerURL() + '/user/add',
+          {
+            uid: user.uid,
+            phoneNumber: '9732002000'
+          }
+        );
+        return user;
+      })
+      .then((user) => {
         history.push('/dashboard');
       })
       .catch(err => {
