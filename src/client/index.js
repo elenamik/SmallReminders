@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { initializeFirebaseApp } from './config/firebase';
+import { initializeFirebaseApp } from './utils/firebase';
 
 initializeFirebaseApp(process.env.NODE_ENV);
 

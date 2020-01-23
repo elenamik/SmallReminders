@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { getServerURL } from '../../config/urls';
 import PrinciplesList from '../../components/PrinciplesList';
-import Loader from '../../components/Loader';
 
 function Dashboard (props) {
   const [data, setData] = useState(false);
@@ -22,7 +21,6 @@ function Dashboard (props) {
   return (
     <div className='container'>
       This is the Dashboard - you will only see it if you are logged in.
-      <Loader />
       <PrinciplesList data={data} />
     </div>
   );
