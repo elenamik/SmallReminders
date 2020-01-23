@@ -6,16 +6,40 @@ mongoose.Promise = global.Promise;
 const Principle = mongoose.model('Principle');
 const isEmpty = require('./validate').isEmpty;
 
+exports.add = async (req, res, next) => {
+  try {
+    const uid = req.body.uid;
+    const content = req.body.content;
+    if (isEmpty(content)) {
+      throw new Error('expected non empty value for content');
+    }
+    const principle = new Principle({
+      content,
+      owner: uid
+    });
+    console.log(`inserting principle for ${uid}`, principle);
+    const result = await principle.save();
+    res.send({ success: true, result });
+  } catch (err) {
+    console.log('principles.add error', err);
+    res.send({ success: false, message: err });
+  }
+};
+
 /**
  * Takes an array of the form:
  * [
  * { content: 'xxxx'}, { content: 'yyyy'}
  * ]
  */
-exports.add = async (req, res, next) => {
+// not tested, but used in testing when creating a new user
+exports.addMany = async (req, res, next) => {
   try {
     const uid = req.body.uid;
     const content = req.body.content;
+    if (isEmpty(content)) {
+      throw new Error('expected non empty value for content');
+    }
     const principlesArray = content.map((entry, key) => {
       if (isEmpty(entry.content)) {
         throw new Error('expected non empty value for content');
@@ -26,10 +50,10 @@ exports.add = async (req, res, next) => {
       });
     });
     console.log(`inserting principles for ${uid}`, principlesArray);
-    await Principle.collection.insertMany(principlesArray);
-    res.send({ success: true });
+    const result = await Principle.collection.insertMany(principlesArray);
+    res.send({ success: true, result });
   } catch (err) {
-    console.log('principles.add error', err);
+    console.log('principles.addMany error', err);
     res.send({ success: false, message: err });
   }
 };

@@ -50,7 +50,7 @@ afterAll(async (done) => {
   await mongoDB.close(done);
 });
 
-describe('/POST principles/add/?content', () => {
+describe('/POST principles/add/', () => {
   it('should add a principle and return resulting JSON object', async () => {
     const uid = firebase.auth().currentUser.uid;
     const res = await request(server).post('/principles/add')

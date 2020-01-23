@@ -25,7 +25,7 @@ router.post('/principles/update',
 
 router.post('/user/add',
   user.add,
-  principles.add
+  principles.addMany
 );
 
 module.exports = router;
