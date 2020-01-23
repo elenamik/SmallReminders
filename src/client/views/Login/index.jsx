@@ -1,25 +1,25 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
-import { getServerURL } from '../../config/urls';
-import './Login.scss';
 import { useHistory } from 'react-router-dom';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import './Login.scss';
 
 function Login (props) {
   const history = useHistory();
 
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) =>
-    axios.post(getServerURL() + '/user/login', {
-      email: data.email,
-      password: data.password
-    }).then(res => {
-      props.setUser(res.data.user);
-      history.push('/dashboard');
-    }).catch(err => {
-      console.log(err);
-    });
-
+  const onSubmit = (data) => {
+    console.log('signing in');
+    firebase.auth().signInWithEmailAndPassword(data.email, data.password)
+      .then(() => {
+        const user = firebase.auth().currentUser;
+        props.setUser(user);
+        history.push('/dashboard');
+      }).catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div id='button-container'>
       <form id='login-form' onSubmit={handleSubmit(onSubmit)}>

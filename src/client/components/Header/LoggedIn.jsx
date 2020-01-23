@@ -1,21 +1,13 @@
 import React from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import axios from 'axios';
-import { getServerURL } from '../../config/urls';
+import firebase from 'firebase/app';
 
 function LoggedIn (props) {
   const history = useHistory();
   const handleLogout = () => {
     props.setUser(false);
+    firebase.auth().signOut();
     history.push('/');
-    window.localStorage.setItem('token', 'undefined');
-    axios.get(getServerURL() + '/user/logout')
-      .then((res) => {
-        console.log(res.data.result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   return (

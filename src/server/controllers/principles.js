@@ -12,8 +12,7 @@ const isEmpty = require('./validate').isEmpty;
  */
 exports.read = async (req, res, next) => {
   try {
-    const user = req.user;
-    const query = { owner: user.uid };
+    const query = { owner: req.body.uid };
     console.log('reading principles for ', JSON.stringify(query));
     const result = await Principle.find(query);
     res.send({
@@ -21,6 +20,7 @@ exports.read = async (req, res, next) => {
       result
     });
   } catch (err) {
+    console.log('error fetching principles', err);
     res.send({
       success: false,
       message: String(err)
@@ -33,7 +33,7 @@ exports.read = async (req, res, next) => {
  */
 exports.add = async (req, res, next) => {
   try {
-    const user = req.user;
+    const uid = req.body.uid;
     const content = req.body.content;
     console.log('content is', content);
     if (isEmpty(content)) {
@@ -42,7 +42,7 @@ exports.add = async (req, res, next) => {
 
     const principle = new Principle({
       content: content,
-      owner: user.uid
+      owner: uid
     });
     console.log('adding principle', JSON.stringify(principle));
     const result = await principle.save();
@@ -65,7 +65,7 @@ exports.add = async (req, res, next) => {
  */
 exports.delete = async (req, res, next) => {
   try {
-    const user = req.user;
+    const uid = req.body.uid;
     const targetId = req.body.id;
 
     if (isEmpty(targetId)) {
@@ -74,7 +74,7 @@ exports.delete = async (req, res, next) => {
     // Id in the request is the ObjectId of principle to delete
     const query = {
       _id: targetId,
-      owner: user.uid
+      owner: uid
     };
     console.log('deleting principle', JSON.stringify(query));
     const result = await Principle.deleteOne(query);
@@ -99,7 +99,7 @@ exports.delete = async (req, res, next) => {
  */
 exports.update = async (req, res, next) => {
   try {
-    const user = req.user;
+    const uid = req.body.uid;
     const targetId = req.body.id;
     const content = req.body.content;
 
@@ -108,7 +108,7 @@ exports.update = async (req, res, next) => {
     }
     const query = {
       _id: targetId,
-      owner: user.uid
+      owner: uid
     };
     const update = {
       content
@@ -129,32 +129,3 @@ exports.update = async (req, res, next) => {
     });
   }
 };
-
-// exports.addGeneric = async (req, res, next) => {
-//   try {
-//     const user = req.user;
-//     console.log(sample);
-//     const principlesArray = sample.forEach((entry) => {
-//       console.log(entry);
-//       return (new Principle({
-//         content: entry.content,
-//         owner: user.uid
-//       })
-//       );
-//     });
-//     console.log(JSON.stringify(principlesArray));
-
-//     console.log('adding principle', JSON.stringify(principle));
-//     const result = await principle.save();
-//     res.send({
-//       success: true,
-//       result
-//     });
-//   } catch (err) {
-//     console.log('got error', String(err));
-//     res.send({
-//       success: false,
-//       error: String(err)
-//     });
-//   }
-// };
