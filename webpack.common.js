@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+
 module.exports = {
   entry: './src/client/index.js',
   module: {
@@ -42,6 +44,9 @@ module.exports = {
       filename: 'index.html'
     }),
     new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new Dotenv({
+      path: './.env'
+    })
   ]
 };
