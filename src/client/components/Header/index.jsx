@@ -11,8 +11,8 @@ function Header (props) {
   };
 
   return (
-    <div id='header'>
-      <div id='header-container'>
+    <div id='header-container'>
+      <div id='header'>
         <h1 id='header-title' onClick={handleClick}>Small Reminders</h1>
         <div id='header-side-container'>
           {props.user ? (

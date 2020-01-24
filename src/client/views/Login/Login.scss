@@ -1,43 +1,31 @@
 @import '../../styles/colors.scss';
-#button-container {
+#login-content-container{
   display: flex;
   flex-direction: column;
-  background-color: $complement-0;
-  border-radius: 10px;
-  justify-content: center;
-  margin:2%;
-  max-width: 70%;
-  margin:auto;
-  margin-top:5%;
-}
-#login-form {
-  display: flex;
-  flex-flow: column;
-  padding: 5%;
-  color: $complement-1;
-  width: 70%;
-  margin:auto;
-}
-label {
-  color: $primary-4;
-  margin-bottom: 2%;
-  margin-top: 3%;
-}
-input {
-  border-radius: 5px;
-  font-size: 1em;
-  padding: 2%;
-  min-width: 80%;
-}
-#login-btn {
-  color: $primary-1;
-  background-color: $primary-0;
-  margin-top: 5%;
-  font-size: 1em;
-  border-radius: 5px;
-  padding: 2%;
+  margin-top: 4%;
 }
 
-#login-btn:hover {
-  background-color: $primary-4;
+.errors-container{
+  display: inline;
+}
+#login-form{
+  display: flex;
+  align-self: flex-start;
+  flex-direction: column;
+  width: 60%;
+}
+.login-input{
+  margin-bottom: 3%;
+}
+.login-label{
+  margin-bottom:2%;
+}
+.login-submit{
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  background-color: $primary-1;
+}
+.login-submit:hover {
+  background-color: $primary-2;
 }

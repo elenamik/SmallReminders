@@ -54,22 +54,20 @@ function App () {
     <div id='app'>
       <Router>
         <Header user={user} setUser={setUser} />
-        <div>
-          <Switch>
-            <Route exact path='/'>
-              <Welcome />
-            </Route>
-            <Route exact path='/login'>
-              <Login setUser={setUser} />
-            </Route>
-            <Route path='/register'>
-              <Register setUser={setUser} />
-            </Route>
-            <AppWrapper path='/dashboard'>
-              <Dashboard user={user} />
-            </AppWrapper>
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path='/'>
+            <Welcome />
+          </Route>
+          <Route exact path='/login'>
+            <Login setUser={setUser} />
+          </Route>
+          <Route path='/register'>
+            <Register setUser={setUser} />
+          </Route>
+          <AppWrapper path='/dashboard'>
+            <Dashboard user={user} />
+          </AppWrapper>
+        </Switch>
       </Router>
     </div>
   );
