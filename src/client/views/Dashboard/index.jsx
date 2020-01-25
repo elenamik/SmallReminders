@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { getServerURL } from '../../config/urls';
 import PrinciplesList from '../../components/PrinciplesList';
+import '../../styles/views.scss';
 
 function Dashboard (props) {
   const [data, setData] = useState(false);
@@ -19,9 +20,17 @@ function Dashboard (props) {
   }, []);
 
   return (
-    <div className='container'>
-      This is the Dashboard - you will only see it if you are logged in.
-      <PrinciplesList data={data} />
+    <div className='view'>
+      <div className='view-header-container'>
+        <div className='view-header'>
+          <h1 className='view-header-text'>Dashboard</h1>
+        </div>
+      </div>
+      <div className='view-content-container'>
+        <div className='view-content' id='welcome-text'>
+          <PrinciplesList data={data} />
+        </div>
+      </div>
     </div>
   );
 }

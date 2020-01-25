@@ -4,10 +4,12 @@ import { useHistory } from 'react-router-dom';
 import firebase from 'firebase/app';
 import { getServerURL } from '../../config/urls';
 import axios from 'axios';
+import Error from '../../components/Error';
+import './Register.scss';
 
 function Register (props) {
   const { register, handleSubmit, errors } = useForm();
-  const [userError, setUserError] = useState(false);
+  const [err, setErr] = useState(false);
   const history = useHistory();
 
   const onSubmit = (data) => {
@@ -28,23 +30,34 @@ function Register (props) {
         history.push('/dashboard');
       })
       .catch(err => {
-        setUserError(true);
+        setErr(true);
         console.log('sign up error', err);
       });
   };
 
   return (
-    <div id='button-container'>
-      <form id='login-form' onSubmit={handleSubmit(onSubmit)}>
-        <label>username</label>
-        <input name='email' type='email' ref={register({ required: true })} />
-        {errors.email && 'email is required'}
-        <label>password</label>
-        <input name='password' type='password' minLength='6' ref={register({ required: true })} />
-        {errors.password && 'password is required'}
-        <button id='login-btn' type='submit'>Sign Up</button>
-        {userError && 'Please check email and password'}
-      </form>
+    <div className='view'>
+      <div className='view-header-container'>
+        <div className='view-header'>
+          <h1 className='view-header-text'>Sign Up</h1>
+        </div>
+      </div>
+      <div className='view-content-container'>
+        <div className='view-content' id='register-content'>
+          <form id='login-form' onSubmit={handleSubmit(onSubmit)}>
+            <div className='errors-container'>
+              {err && <Error text='email or password is invalid' />}
+              {errors.email && <Error text='email is required' />}
+              {errors.password && <Error text='password is required - 6 character minimum' />}
+            </div>
+            <label className='login-label'>email</label>
+            <input className='login-input' name='email' type='email' ref={register({ required: true })} />
+            <label className='login-label'>password</label>
+            <input className='login-input' name='password' type='password' ref={register({ required: true, minLength: 6 })} />
+            <button className='login-submit' type='submit'>Log In</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
