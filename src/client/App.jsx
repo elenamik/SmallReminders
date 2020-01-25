@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Welcome from './views/Welcome';
-import Register from './views/Register';
+import SignUp from './views/SignUp';
 import Login from './views/Login';
 import Dashboard from './views/Dashboard';
 import firebase from 'firebase/app';
@@ -11,8 +11,7 @@ import './styles/App.scss';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Redirect
+  Route
 } from 'react-router-dom';
 
 function App () {
@@ -36,20 +35,6 @@ function App () {
     }
   }, []);
 
-  function AppWrapper () {
-    if (!user) {
-      return (
-        <Redirect to={{ pathname: '/login' }} />
-      );
-    } else {
-      return (
-        <Route exact path='/dashboard'>
-          <Dashboard user={user} />
-        </Route>
-      );
-    }
-  }
-
   return (
     <div id='app'>
       <Router>
@@ -62,11 +47,11 @@ function App () {
             <Login setUser={setUser} />
           </Route>
           <Route path='/register'>
-            <Register setUser={setUser} />
+            <SignUp setUser={setUser} />
           </Route>
-          <AppWrapper path='/dashboard'>
+          <Route path='/dashboard'>
             <Dashboard user={user} />
-          </AppWrapper>
+          </Route>
         </Switch>
       </Router>
     </div>

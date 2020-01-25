@@ -35,9 +35,9 @@ function Login (props) {
         <div id='login-content-container' className='view-content'>
           <form id='login-form' onSubmit={handleSubmit(onSubmit)}>
             <div className='errors-container'>
-              {err && <Error text='email or password is invalid' />}
-              {errors.email && <Error text='email is required' />}
-              {errors.password && <Error text='password is required - 6 character minimum' />}
+              {err && <Error text='* email or password is invalid' />}
+              {errors.email && <Error text='* email is required' />}
+              {errors.password && <Error text='* password is required - 6 character minimum' />}
             </div>
             <label className='login-label'>email</label>
             <input className='login-input' name='email' type='email' ref={register({ required: true })} />

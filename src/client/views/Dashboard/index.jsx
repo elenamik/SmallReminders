@@ -6,18 +6,28 @@ import '../../styles/views.scss';
 
 function Dashboard (props) {
   const [data, setData] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    axios.post(getServerURL() + '/principles/read', {
-      uid: props.user.uid
-    })
-      .then((res) => {
+    const readPrinciples = async () => {
+      const uid = await props.user.uid;
+      try {
+        const res = await axios.post(getServerURL() + '/principles/read', {
+          uid
+        });
+        console.log(res.data);
         setData(res.data.result);
-      })
-      .catch((err) => {
-        console.log(err);
+        setLoading(false);
+      } catch (err) {
+        console.log('error loading principles in dashboard', err);
         setData(false);
-      });
-  }, []);
+        setLoading(false);
+      }
+    };
+    if (props.user && loading) {
+      readPrinciples();
+    }
+  });
 
   return (
     <div className='view'>
@@ -27,8 +37,10 @@ function Dashboard (props) {
         </div>
       </div>
       <div className='view-content-container'>
-        <div className='view-content' id='welcome-text'>
-          <PrinciplesList data={data} />
+        <div className='view-content'>
+          {loading
+            ? <div id='loading-content'> loading ... </div>
+            : <div id='dashboard-content'><PrinciplesList data={data} /></div>}
         </div>
       </div>
     </div>
