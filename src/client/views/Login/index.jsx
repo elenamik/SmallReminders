@@ -13,16 +13,19 @@ function Login (props) {
 
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
-    firebase.auth().signInWithEmailAndPassword(data.email, data.password)
-      .then(() => {
-        setErr(false);
-        const user = firebase.auth().currentUser;
-        props.setUser(user);
-        history.push('/dashboard');
-      }).catch((err) => {
-        console.log(err);
-        setErr(true);
-      });
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      .then(
+        firebase.auth().signInWithEmailAndPassword(data.email, data.password)
+          .then(() => {
+            setErr(false);
+            const user = firebase.auth().currentUser;
+            props.setUser(user);
+            history.push('/dashboard');
+          }).catch((err) => {
+            console.log(err);
+            setErr(true);
+          })
+      );
   };
   return (
     <div className='view'>

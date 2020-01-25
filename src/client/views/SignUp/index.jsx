@@ -16,23 +16,26 @@ function SignUp (props) {
 
   const onSubmit = (data) => {
     setLoading(true);
-    firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
-      .then(async (response) => {
-        const user = response.user;
-        console.log('user obtained from firebase auth');
-        try {
-          await axios.post(getServerURL() + '/user/add', { uid: user.uid });
-          props.setUser(user);
-          history.push('/dashboard');
-        } catch {
-          setErr(true);
-          console.log('sign up error', err);
-        }
-      })
-      .catch(err => {
-        setErr(true);
-        console.log('sign up error', err);
-      });
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      .then(
+        firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
+          .then(async (response) => {
+            const user = response.user;
+            console.log('user obtained from firebase auth');
+            try {
+              await axios.post(getServerURL() + '/user/add', { uid: user.uid });
+              props.setUser(user);
+              history.push('/dashboard');
+            } catch {
+              setErr(true);
+              console.log('sign up error', err);
+            }
+          })
+          .catch(err => {
+            setErr(true);
+            console.log('sign up error', err);
+          })
+      );
   };
 
   if (loading) {
