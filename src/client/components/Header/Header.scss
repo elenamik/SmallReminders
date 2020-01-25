@@ -1,16 +1,16 @@
 @import '../../styles/colors.scss';
-#header {
+#header-container {
   color: $primary-4;
   background: $complement-1;
   min-height: 70px;
   padding: 1% 4% 1% 4%;
 }
-#header-container {
+#header{
   display: flex;
   flex-flow: row;
   justify-content: space-between;
-  margin: auto;
   max-width: 900px;
+  margin: auto;
 }
 #header-title {
   align-self: flex-end;

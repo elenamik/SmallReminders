@@ -1,0 +1,24 @@
+@import '../../styles/colors.scss';
+.error-container {
+  color: $primary-4;
+  border: solid $primary-1-opaque;
+  border-radius: 10px;
+  animation: bounceIn 0.5s;
+  padding: 1em;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
