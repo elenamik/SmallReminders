@@ -6,9 +6,9 @@
   "scripts": {
     "test": "semistandard && NODE_ENV=TEST jest --detectOpenHandles",
     "start": "npm run dev-server & npm run dev-client ",
-    "dev-client": "NODE_ENV=DEV webpack-dev-server --config webpack.dev.js --open --hot",
+    "dev-client": "cross-env NODE_ENV=DEV webpack-dev-server --config webpack.dev.js --open --hot",
     "build-client": "webpack --config webpack.prod.js",
-    "dev-server": "NODE_ENV=DEV nodemon src/server/index.js",
+    "dev-server": "cross-env NODE_ENV=DEV nodemon src/server/index.js",
     "prod-server": "node src/server/index.js"
   },
   "repository": {
@@ -50,6 +50,7 @@
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
     "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.0",
     "css-loader": "^3.4.2",
     "firebase-tools": "^7.11.0",
     "html-loader": "^0.5.5",

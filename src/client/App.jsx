@@ -9,7 +9,7 @@ import 'babel-polyfill'; // lets you use async / await
 
 import './styles/App.scss';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route
 } from 'react-router-dom';
