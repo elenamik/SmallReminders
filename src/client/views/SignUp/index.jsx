@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'babel-polyfill';
+import ViewTemplate from '../../components/ViewTemplate';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import firebase from 'firebase/app';
@@ -7,6 +7,7 @@ import { getServerURL } from '../../config/urls';
 import axios from 'axios';
 import Error from '../../components/Error';
 import './SignUp.scss';
+import 'babel-polyfill';
 
 function SignUp (props) {
   const { register, handleSubmit, errors } = useForm();
@@ -40,44 +41,26 @@ function SignUp (props) {
 
   if (loading) {
     return (
-      <div className='view'>
-        <div className='view-header-container'>
-          <div className='view-header'>
-            <h1 className='view-header-text'>Sign Up</h1>
-          </div>
-        </div>
-        <div className='view-content-container'>
-          <div className='view-content' id='loading-content'>
-            loading ...
-          </div>
-        </div>
-      </div>
+      <ViewTemplate title='Sign Up'>
+        loading ...
+      </ViewTemplate>
     );
   } else {
     return (
-      <div className='view'>
-        <div className='view-header-container'>
-          <div className='view-header'>
-            <h1 className='view-header-text'>Sign Up</h1>
+      <ViewTemplate title='Sign Up' id='register-content'>
+        <form id='login-form' onSubmit={handleSubmit(onSubmit)}>
+          <div className='errors-container'>
+            {err && <Error text='* email or password is invalid' />}
+            {errors.email && <Error text='* email is required' />}
+            {errors.password && <Error text='* password is required - 6 character minimum' />}
           </div>
-        </div>
-        <div className='view-content-container'>
-          <div className='view-content' id='register-content'>
-            <form id='login-form' onSubmit={handleSubmit(onSubmit)}>
-              <div className='errors-container'>
-                {err && <Error text='* email or password is invalid' />}
-                {errors.email && <Error text='* email is required' />}
-                {errors.password && <Error text='* password is required - 6 character minimum' />}
-              </div>
-              <label className='login-label'>email</label>
-              <input className='login-input' name='email' type='email' ref={register({ required: true })} />
-              <label className='login-label'>password</label>
-              <input className='login-input' name='password' type='password' ref={register({ required: true, minLength: 6 })} />
-              <button className='login-submit' type='submit'>Sign Up</button>
-            </form>
-          </div>
-        </div>
-      </div>
+          <label className='login-label'>email</label>
+          <input className='login-input' name='email' type='email' ref={register({ required: true })} />
+          <label className='login-label'>password</label>
+          <input className='login-input' name='password' type='password' ref={register({ required: true, minLength: 6 })} />
+          <button className='login-submit' type='submit'>Sign Up</button>
+        </form>
+      </ViewTemplate>
     );
   }
 }

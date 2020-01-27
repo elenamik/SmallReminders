@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { getServerURL } from '../../config/urls';
+import ViewTemplate from '../../components/ViewTemplate';
 import PrinciplesList from '../../components/PrinciplesList';
-import '../../styles/views.scss';
 
 function Dashboard (props) {
   const [data, setData] = useState(false);
@@ -30,20 +30,11 @@ function Dashboard (props) {
   });
 
   return (
-    <div className='view'>
-      <div className='view-header-container'>
-        <div className='view-header'>
-          <h1 className='view-header-text'>Dashboard</h1>
-        </div>
-      </div>
-      <div className='view-content-container'>
-        <div className='view-content'>
-          {loading
-            ? <div id='loading-content'> loading ... </div>
-            : <div id='dashboard-content'><PrinciplesList data={data} /></div>}
-        </div>
-      </div>
-    </div>
+    <ViewTemplate title='Dashboard'>
+      {loading
+        ? <div id='loading-content'> loading ... </div>
+        : <div id='dashboard-content'><PrinciplesList data={data} /></div>}
+    </ViewTemplate>
   );
 }
 
