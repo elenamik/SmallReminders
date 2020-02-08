@@ -27,3 +27,22 @@ exports.add = async (req, res, next) => {
     });
   }
 };
+
+exports.fetchUser = async (req, res, next) => {
+  try {
+    const uid = req.body.uid;
+    const query = {
+      uid: uid
+    };
+    const result = await User.findOne(query);
+    console.log('fetching user', query);
+    req.body.phoneNumber = result.phoneNumber;
+    next();
+  } catch (err) {
+    console.log('User fetch error', String(err));
+    res.send({
+      success: false,
+      message: String(err)
+    });
+  }
+};
