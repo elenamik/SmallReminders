@@ -8,13 +8,16 @@ mongoose.Promise = global.Promise;
 
 exports.send = async (req, res, next) => {
   try {
+    /*
+     message sending disabled
+    */
     // const twilioAction = {
     //   to: '+1' + req.body.phoneNumber,
     //   from: '+1' + config.twilioPhoneNumber,
     //   body: 'This is a text message!'
     // };
     // await client.messages.create(twilioAction);
-    // message sending disabled
+
     res.send({ success: true });
   } catch (err) {
     console.log('Send to twilio error', String(err));
