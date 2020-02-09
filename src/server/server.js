@@ -8,7 +8,9 @@ const express = require('express');
 const routes = require('./routes');
 const cookieParser = require('cookie-parser');
 
-// // App
+// const scheduler = require('./utils/scheduler');
+// scheduler(); // will add SMS actions to DB
+// App
 const app = express();
 
 app.use(bodyParser.json());
@@ -23,4 +25,5 @@ app.get('/', (req, res) => {
 });
 
 app.use(routes);
+
 module.exports = app;
