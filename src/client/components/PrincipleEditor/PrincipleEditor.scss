@@ -2,19 +2,49 @@
 .principle-editor-container {
   color: $primary-4;
   background-color: $primary-1;
-  min-height: 5em;
-  max-height: 8em;
-  min-width: 300px;
-  width: 40%;
+  height: 50%;
+  width: 100%;
   border-radius: 5px;
   text-align: center;
   margin: 1%;
   padding: 1%;
 }
-#principle-editor {
+
+.hide-line{
+  overflow: hidden;
+}
+
+form {
   background-color: $primary-1;
   display: flex;
   flex-direction: column;
+  position: relative;
+  margin: 5%;
 }
-.principle-input {
+form textarea {
+  height: 100%;
+  width: 100%;
+  outline: none;
+}
+form label {
+  position: absolute;
+  bottom:0px;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  pointer-events: none;
+  font-size: 1.5em;
+}
+
+ .principle-editor-label-text {
+   position: absolute;
+   bottom: 5px;
+   left: 0px;
+   transition: all 0.3s ease;
+ }
+
+form textarea:focus + .principle-editor-label .principle-editor-label-text,
+form textarea:valid + .principle-editor-label .principle-editor-label-text{
+   transform: translateY(-550%);
+   color: $complement-1;
 }

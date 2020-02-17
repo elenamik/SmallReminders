@@ -6,7 +6,7 @@ import Modal from '../Modal';
 import './PrinciplesList.scss';
 
 function PrinciplesList (props) {
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState(true);
 
   const principles = props.data;
   let list;
