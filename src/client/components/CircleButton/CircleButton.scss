@@ -1,0 +1,21 @@
+@import '../../styles/colors.scss';
+.add-button-container {
+  display: flex;
+  justify-content: center;
+  color: $complement-1;
+  background-color: $primary-2;
+  font-size: 2em;
+  border-radius: 50%;
+  height: 2em;
+  width: 2em;
+  font-family: sans-serif;
+}
+.add-button-container:hover {
+  color: $complement-2;
+  background-color: $primary-4;
+
+}
+.add-button-content {
+  margin: auto;
+  padding: auto;
+}

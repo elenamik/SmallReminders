@@ -1,0 +1,31 @@
+@import '../../styles/colors.scss';
+#surface{
+  // background-color: $primary-4-opaque;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+// #modal-container{
+//   background-color: #edeff2;
+//   border-radius: 6px;
+//   padding:6%;
+//   min-width: 60%;
+//   min-height: 40%;
+// }
+
+#modal-title{
+    text-align: center;
+    margin-bottom:5%;
+    font-size:1.2em;
+}
+
+.buttons{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
