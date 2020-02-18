@@ -6,11 +6,9 @@ import { ADD_PRINCIPLE, DELETE_PRINCIPLE_BY_ID, UPDATE_PRINCIPLE_BY_ID } from '.
 
 function Demo () {
   const [principles, updatePrinciples] = useState(samplePrinciples);
-  // useEffect(() => {
 
-  // }, []);
   const update = (action, payload) => {
-    // types of actions -- delete, add, change
+    // types of actions -- delete, add, update
     switch (action) {
       case ADD_PRINCIPLE:
         principles.unshift({
@@ -18,6 +16,21 @@ function Demo () {
           _id: Math.floor(Math.random() * 100 + 10)
         });
         updatePrinciples(principles);
+        break;
+      case DELETE_PRINCIPLE_BY_ID:
+        updatePrinciples(principles.filter((elem) => {
+          return elem._id !== payload.id;
+        }));
+        break;
+      case UPDATE_PRINCIPLE_BY_ID:
+        updatePrinciples(principles.filter((elem) => {
+          console.log('updating');
+          if (elem._id === payload.id) {
+            elem.content = payload.content;
+          }
+          return elem;
+        }));
+        break;
     }
   };
 

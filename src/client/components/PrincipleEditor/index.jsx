@@ -2,15 +2,26 @@ import React, { useState } from 'react';
 import CircleButton from '../CircleButton';
 import './PrincipleEditor.scss';
 
-function PrincipleEditor ({ handleClose, handleSaveNew, initialValue }) {
-  const [input, setInput] = useState(initialValue);
+function PrincipleEditor ({ data, handleClose, handleSaveNew, handleDelete, handleUpdate }) {
+  console.log('data inside editor', data);
+  const [input, setInput] = useState(data.content);
   const handleChange = (event) => {
     setInput(event.target.value);
   };
   const handleSubmit = () => {
-    handleSaveNew({ content: input });
+    if (data.id) {
+      handleUpdate({ content: input, id: data.id });
+    } else {
+      handleSaveNew({ content: input });
+    }
     handleClose();
   };
+
+  const handleDeletion = () => {
+    handleDelete({ id: data.id });
+    handleClose();
+  };
+
   return (
     <div className='principle-editor-container'>
       <form id='principle-editor-form'>
@@ -21,6 +32,7 @@ function PrincipleEditor ({ handleClose, handleSaveNew, initialValue }) {
           type='text'
           wrap='soft'
           autoComplete='off'
+          /* eslint-disable */ // need both required and value for styling
           required={true}
           value={input}
         />
@@ -29,7 +41,8 @@ function PrincipleEditor ({ handleClose, handleSaveNew, initialValue }) {
         </label>
       </form>
       <div className='principle-editor-buttons'>
-        <CircleButton name='exit' icon={'\u2190'} onClick={handleClose} />
+        <CircleButton name='exit' icon={'\u241B'} onClick={handleClose} />
+        {data.id && <CircleButton name='delete' icon={'\u2421'} onClick={handleDeletion} />}
         <CircleButton name='submit' icon={'\u2713'} onClick={handleSubmit} />
       </div>
     </div>

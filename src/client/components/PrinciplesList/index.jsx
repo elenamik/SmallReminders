@@ -7,28 +7,36 @@ import { ADD_PRINCIPLE, DELETE_PRINCIPLE_BY_ID, UPDATE_PRINCIPLE_BY_ID } from '.
 import './PrinciplesList.scss';
 
 function PrinciplesList ({ data, update }) {
-  const [editing, setEditing] = useState(true);
+  const [editing, setEditing] = useState(false);
+  const handeClick = () => {
+    setEditing(true);
+  };
+  const openEditor = (payload) => {
+    setEditing(payload);
+  };
+  const handleClose = () => {
+    setEditing(false);
+  };
+  const handleSaveNew = (payload) => {
+    update(ADD_PRINCIPLE, payload);
+  };
+  const handleDelete = (payload) => {
+    console.log('payload inside p list', payload);
+    update(DELETE_PRINCIPLE_BY_ID, payload);
+  };
+  const handleUpdate = payload => {
+    update(UPDATE_PRINCIPLE_BY_ID, payload);
+  };
 
   const principles = data;
   let list;
   if (principles) {
     list = principles.map((element, key) => {
       return (
-        <Principle content={element.content} key={key} />
+        <Principle content={element.content} id={element._id} openEditor={openEditor} key={key} />
       );
     });
   }
-  const handeClick = () => {
-    setEditing(true);
-  };
-
-  const handleClose = () => {
-    setEditing(false);
-  };
-
-  const handleSaveNew = (payload) => {
-    update(ADD_PRINCIPLE, payload);
-  };
 
   return (
     <>
@@ -38,7 +46,13 @@ function PrinciplesList ({ data, update }) {
       <CircleButton icon='+' onClick={handeClick} />
       {editing &&
         <Modal id='modal-root'>
-          <PrincipleEditor handleClose={handleClose} handleSaveNew={handleSaveNew} />
+          <PrincipleEditor
+            data={editing}
+            handleClose={handleClose}
+            handleSaveNew={handleSaveNew}
+            handleDelete={handleDelete}
+            handleUpdate={handleUpdate}
+          />
         </Modal>}
     </>
   );

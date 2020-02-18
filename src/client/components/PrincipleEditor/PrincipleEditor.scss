@@ -9,6 +9,13 @@
   margin: 1%;
   padding: 1%;
   padding-top: 5%;
+  animation-name: modalEnter;
+  animation-duration: .3s;
+}
+
+@keyframes modalEnter {
+  from {transform: scale(0.2); opacity: 0;}
+  to {transform: scale(1.0); opacity: 1;}
 }
 
 form {
