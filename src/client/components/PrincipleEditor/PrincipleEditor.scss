@@ -2,16 +2,13 @@
 .principle-editor-container {
   color: $primary-4;
   background-color: $primary-1;
-  height: 50%;
+  height: 40%;
   width: 100%;
   border-radius: 5px;
   text-align: center;
   margin: 1%;
   padding: 1%;
-}
-
-.hide-line{
-  overflow: hidden;
+  padding-top: 5%;
 }
 
 form {
@@ -20,11 +17,13 @@ form {
   flex-direction: column;
   position: relative;
   margin: 5%;
+  height: 60%;
 }
 form textarea {
   height: 100%;
   width: 100%;
   outline: none;
+  font-size: 1em;
 }
 form label {
   position: absolute;
@@ -45,6 +44,12 @@ form label {
 
 form textarea:focus + .principle-editor-label .principle-editor-label-text,
 form textarea:valid + .principle-editor-label .principle-editor-label-text{
-   transform: translateY(-550%);
+   transform: translateY(-370%);
    color: $complement-1;
+}
+
+.principle-editor-buttons {
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
 }

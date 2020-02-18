@@ -1,5 +1,5 @@
 @import '../../styles/colors.scss';
-.add-button-container {
+.circle-button-container {
   display: flex;
   justify-content: center;
   color: $complement-1;
@@ -10,12 +10,14 @@
   width: 2em;
   font-family: sans-serif;
 }
-.add-button-container:hover {
+.circle-button-container:hover {
   color: $complement-2;
   background-color: $primary-4;
 
 }
-.add-button-content {
+.circle-button-content {
   margin: auto;
-  padding: auto;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
 }
