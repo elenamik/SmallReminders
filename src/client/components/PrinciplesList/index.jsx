@@ -40,7 +40,7 @@ function PrinciplesList ({ data, update }) {
 
   return (
     <>
-      <CircleButton icon='+' onClick={handeClick} />
+      <CircleButton icon={'\uFF0B'} onClick={handeClick} />
       <div id='principles-list'>
         {list}
       </div>

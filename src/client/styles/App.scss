@@ -1,4 +1,11 @@
 @import './colors.scss';
+#app {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
 body {
   font-family: 'Libre Baskerville', serif;
   margin: 0;

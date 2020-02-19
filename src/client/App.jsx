@@ -4,6 +4,7 @@ import Welcome from './views/Welcome';
 import SignUp from './views/SignUp';
 import Login from './views/Login';
 import Dashboard from './views/Dashboard';
+import Footer from './components/Footer';
 import firebase from 'firebase/app';
 import 'babel-polyfill'; // lets you use async / await
 
@@ -36,7 +37,7 @@ function App () {
   }, []);
 
   return (
-    <div id='app'>
+    <>
       <Router>
         <Header user={user} setUser={setUser} />
         <Switch>
@@ -54,7 +55,8 @@ function App () {
           </Route>
         </Switch>
       </Router>
-    </div>
+      <Footer />
+    </>
   );
 }
 

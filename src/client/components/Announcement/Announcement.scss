@@ -1,0 +1,20 @@
+@import '../../styles/colors.scss';
+.announcement-container {
+  display: flex;
+  height: 2em;
+  width: 2em;
+  width: 100%;
+}
+.announcement-icon {
+  background-color: $primary-2;
+  padding: 1%;
+  border-radius: 3px;
+  align-self: center;
+  color: $complement-2; 
+}
+.announcement-content {
+  align-self: center;
+  color: black;
+  padding-left: 1%;
+}
+
