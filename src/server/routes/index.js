@@ -7,12 +7,14 @@ var router = express.Router();
 const principles = require('../controllers/principles');
 const user = require('../controllers/user');
 const twilio = require('../controllers/twilio');
+const validator = require('../controllers/validator');
 
 router.post('/principles/read',
   principles.read
 );
 
 router.post('/principles/add',
+  validator.principlesAdd,
   principles.add
 );
 

@@ -6,9 +6,15 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const User = mongoose.model('User');
 const samplePrinciples = require('../constants/sample.js');
+const { validationResult } = require('express-validator');
 
 exports.add = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      throw new Error(JSON.stringify({ errors: errors.array() }));
+    }
+
     const uid = req.body.uid;
     const phoneNumber = req.body.phoneNumber;
     console.log('creating user entry', uid, phoneNumber);
