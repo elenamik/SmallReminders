@@ -1,0 +1,26 @@
+@import '../../styles/colors.scss';
+#footer-container {
+  display: flex;
+  margin-top: 20%;
+  color: $primary-1;
+  background: $primary-4;
+  min-height: 70px;
+  padding: 1% 4% 1% 4%;
+}
+#footer-content{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-self: center;
+  flex-flow: row;
+  width: 80%;
+  margin: auto;
+}
+
+#github-link{
+  color: $primary-1;
+  padding-left: 1%
+}
+#github-link:hover{
+  color: white;
+}
