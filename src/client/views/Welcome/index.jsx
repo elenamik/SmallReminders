@@ -1,5 +1,6 @@
 import React from 'react';
-import ViewTemplate from '../../components/ViewTemplate';
+import ViewTemplate from '../ViewTemplate';
+import Demo from '../../components/Demo';
 import './Welcome.scss';
 
 function Welcome () {
@@ -13,6 +14,7 @@ function Welcome () {
       <p>
     Feel free to use this app as memorable repository, as well as a tool to send yourself reminders.
       </p>
+      <Demo />
     </ViewTemplate>
   );
 }

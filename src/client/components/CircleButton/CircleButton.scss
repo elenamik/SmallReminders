@@ -1,0 +1,23 @@
+@import '../../styles/colors.scss';
+.circle-button-container {
+  display: flex;
+  justify-content: center;
+  color: $complement-1;
+  background-color: $primary-2;
+  font-size: 2em;
+  border-radius: 50%;
+  height: 2em;
+  width: 2em;
+  font-family: sans-serif;
+}
+.circle-button-container:hover {
+  color: $complement-2;
+  background-color: $primary-4;
+
+}
+.circle-button-content {
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
