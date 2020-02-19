@@ -1,5 +1,5 @@
 import React from 'react';
-import ViewTemplate from '../../components/ViewTemplate';
+import ViewTemplate from '../ViewTemplate';
 import Demo from '../../components/Demo';
 import './Welcome.scss';
 

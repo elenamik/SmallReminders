@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ViewTemplate from '../../components/ViewTemplate';
+import ViewTemplate from '../ViewTemplate';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import firebase from 'firebase/app';

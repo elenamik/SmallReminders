@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import PageTemplate from '../../components/ViewTemplate';
+import ViewTemplate from '../ViewTemplate';
 import Error from '../../components/Error';
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -28,7 +28,7 @@ function Login (props) {
       );
   };
   return (
-    <PageTemplate title='Login'>
+    <ViewTemplate title='Login'>
       <form id='login-form' onSubmit={handleSubmit(onSubmit)}>
         <div className='errors-container'>
           {err && <Error text='* email or password is invalid' />}
@@ -41,7 +41,7 @@ function Login (props) {
         <input className='login-input' name='password' type='password' ref={register({ required: true, minLength: 6 })} />
         <button className='login-submit' type='submit'>Log In</button>
       </form>
-    </PageTemplate>
+    </ViewTemplate>
   );
 }
 
