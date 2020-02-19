@@ -11,7 +11,7 @@ function Demo () {
     // types of actions -- delete, add, update
     switch (action) {
       case ADD_PRINCIPLE:
-        principles.unshift({
+        principles.push({
           content: payload.content,
           _id: Math.floor(Math.random() * 100 + 10)
         });

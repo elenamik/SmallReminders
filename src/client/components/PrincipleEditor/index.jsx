@@ -3,12 +3,12 @@ import CircleButton from '../CircleButton';
 import './PrincipleEditor.scss';
 
 function PrincipleEditor ({ data, handleClose, handleSaveNew, handleDelete, handleUpdate }) {
-  console.log('data inside editor', data);
   const [input, setInput] = useState(data.content);
   const handleChange = (event) => {
     setInput(event.target.value);
   };
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    console.log('submitting');
     if (data.id) {
       handleUpdate({ content: input, id: data.id });
     } else {
@@ -16,17 +16,22 @@ function PrincipleEditor ({ data, handleClose, handleSaveNew, handleDelete, hand
     }
     handleClose();
   };
-
+  const onEnterPress = (event) => {
+    if (event.keyCode === 13 && event.shiftKey === false) {
+      event.preventDefault();
+      handleSubmit(event);
+    }
+  };
   const handleDeletion = () => {
+    console.log('deleting', data.id);
     handleDelete({ id: data.id });
     handleClose();
   };
-
   return (
     <div className='principle-editor-container'>
       <form id='principle-editor-form'>
         <textarea
-          className='principle-input'
+          id='principle-editor-input'
           onChange={handleChange}
           name='principle'
           type='text'
@@ -35,12 +40,13 @@ function PrincipleEditor ({ data, handleClose, handleSaveNew, handleDelete, hand
           /* eslint-disable */ // need both required and value for styling
           required={true}
           value={input}
+          onKeyDown={onEnterPress}
         />
-        <label className='principle-editor-label' for='principle'>
-          <span className='principle-editor-label-text'>Wisdom Goes Here</span>
+        <label id='principle-editor-label' name='principle'>
+          <span id='principle-editor-label-text'>Wisdom Goes Here</span>
         </label>
       </form>
-      <div className='principle-editor-buttons'>
+      <div id='principle-editor-buttons'>
         <CircleButton name='exit' icon={'\u241B'} onClick={handleClose} />
         {data.id && <CircleButton name='delete' icon={'\u2421'} onClick={handleDeletion} />}
         <CircleButton name='submit' icon={'\u2713'} onClick={handleSubmit} />

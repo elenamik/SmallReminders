@@ -18,7 +18,7 @@
   to {transform: scale(1.0); opacity: 1;}
 }
 
-form {
+#principle-editor-form {
   background-color: $primary-1;
   display: flex;
   flex-direction: column;
@@ -26,13 +26,13 @@ form {
   margin: 5%;
   height: 60%;
 }
-form textarea {
+#principle-editor-input {
   height: 100%;
   width: 100%;
   outline: none;
   font-size: 1em;
 }
-form label {
+#principle-editor-label {
   position: absolute;
   bottom:0px;
   height: 100%;
@@ -42,20 +42,20 @@ form label {
   font-size: 1.5em;
 }
 
- .principle-editor-label-text {
+ #principle-editor-label-text {
    position: absolute;
    bottom: 5px;
    left: 0px;
    transition: all 0.3s ease;
  }
 
-form textarea:focus + .principle-editor-label .principle-editor-label-text,
-form textarea:valid + .principle-editor-label .principle-editor-label-text{
+#principle-editor-input:focus + #principle-editor-label #principle-editor-label-text,
+#principle-editor-input:valid + #principle-editor-label #principle-editor-label-text{
    transform: translateY(-370%);
    color: $complement-1;
 }
 
-.principle-editor-buttons {
+#principle-editor-buttons {
   justify-content: flex-end;
   display: flex;
   flex-direction: row;

@@ -40,10 +40,10 @@ function PrinciplesList ({ data, update }) {
 
   return (
     <>
+      <CircleButton icon='+' onClick={handeClick} />
       <div id='principles-list'>
         {list}
       </div>
-      <CircleButton icon='+' onClick={handeClick} />
       {editing &&
         <Modal id='modal-root'>
           <PrincipleEditor

@@ -41,7 +41,7 @@ function App () {
         <Header user={user} setUser={setUser} />
         <Switch>
           <Route exact path='/'>
-            <Welcome />
+            <Welcome user={user} />
           </Route>
           <Route exact path='/login'>
             <Login setUser={setUser} />

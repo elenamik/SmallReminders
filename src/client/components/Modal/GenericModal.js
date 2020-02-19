@@ -1,11 +1,11 @@
 import React from 'react';
 import './Modal.scss';
 
-function GenericModal (props) {
+function GenericModal ({ children }) {
   return (
     <div id='surface'>
       <div id='modal-container'>
-        {props.children}
+        {children}
       </div>
     </div>
   );
