@@ -6,6 +6,7 @@ const moment = require('moment');
 const Principle = mongoose.model('Principle');
 
 // left off : SMS actions not saving to DB. also, this is sort of slow
+// 2. array returns a promise
 
 const generateDate = () => {
   // will choose random hourly time within 24 hours of current time
@@ -19,7 +20,6 @@ const pickRandomMessage = async (uid, count) => {
     const query = { owner: uid };
     const r = Math.floor(Math.random() * count);
     const principle = await Principle.findOne(query).skip(r);
-    console.log('random chosen', principle);
     return principle.content;
   } catch (err) {
     console.log('pickRandomMessageErr', err);
@@ -27,26 +27,33 @@ const pickRandomMessage = async (uid, count) => {
   }
 };
 
-const scheduler = async () => {
-  try {
-    const users = await User.find({ });
-    const SMSActions = users.map(async (user, key) => {
+const generateActions = (users) => {
+  return Promise.all(
+    users.map(async (user) => {
       const query = { owner: user.uid };
-      const count = await Principle.count(query);
+      const count = await Principle.countDocuments(query);
       if (count === 0) {
         console.log('Warning, uid linked with 0 principles', user.uid);
-        // return null
+        return null;
       } else {
-        return new SMSAction({
+        const x = SMSAction({
           owner: user.uid,
           content: await pickRandomMessage(user.uid, count),
           status: 'new',
           sendTime: generateDate()
         });
+        return x;
       }
-    });
-    await SMSAction.collection.insertMany(SMSActions);
-    console.log(SMSActions);
+    })
+  );
+};
+
+const scheduler = async () => {
+  try {
+    const users = await User.find({ });
+    const SMSActions = await generateActions(users);
+    console.log('Writing new SMS actions:', SMSActions);
+    // SMSAction.collection.insertMany(SMSActions);
   } catch (err) {
     console.log('scheduler err', err);
   }
