@@ -119,9 +119,12 @@ exports.delete = async (req, res, next) => {
 
 // not tested - but it is used to bulk delete when testing creating of new user
 // only used internally
-exports.deleteAll = async (req, res, next) => {
+exports.deleteByUid = async (req, res, next) => {
   try {
-    await Principle.deleteAll({ owner: req.body.uid });
+    const query = {
+      owner: req.body.uid
+    };
+    await Principle.deleteAll(query);
     res.send({ success: true });
   } catch (err) {
     console.log('bulk delete failed', err);

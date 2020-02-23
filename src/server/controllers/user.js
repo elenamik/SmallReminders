@@ -52,3 +52,21 @@ exports.fetchUser = async (req, res, next) => {
     });
   }
 };
+
+exports.delete = async (req, res, next) => {
+  try {
+    const uid = req.body.uid;
+    const query = {
+      uid: uid
+    };
+    await User.deleteOne(query);
+    console.log('deleting user', query);
+    next();
+  } catch (err) {
+    console.log('delete user error', String(err));
+    res.send({
+      success: false,
+      message: String(err)
+    });
+  }
+};

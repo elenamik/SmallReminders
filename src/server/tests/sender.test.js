@@ -1,25 +1,22 @@
-/**
- * Testing Principles CRUD API
- */
-
 // Dependencies
-require('babel-polyfill');
 require('dotenv').config();
+require('babel-polyfill');
 require('../schema');
 const app = require('../server.js');
 const request = require('supertest');
 const http = require('http');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.set('useFindAndModify', false);
 const mongoDB = require('../utils/mongoDB');
 const { initializeFirebaseApp } = require('../../client/utils/firebase');
 const firebase = require('firebase/app');
-require('firebase/auth');
-
-const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 const User = mongoose.model('User');
 const Principle = mongoose.model('Principle');
+require('firebase/auth');
 
 let server;
+// let testUser;
 
 beforeAll(async (done) => {
   server = await http.createServer(app);
@@ -31,7 +28,13 @@ beforeAll(async (done) => {
   const email = `fortesting_${Math.random().toString(36).substr(2, 5)}@email.com`;
   const password = 'fakepassword';
   firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then(() => {
+    .then(async () => {
+      const user = firebase.auth().currentUser;
+      console.log('obtained user in test', user.uid);
+      await request(server).post('/user/add')
+        .send({
+          uid: user.uid
+        });
       done();
     })
     .catch(err => {
@@ -46,6 +49,7 @@ afterAll(async (done) => {
   await Principle.deleteMany({ owner: user.uid });
   user.delete()
     .then(() => {
+      console.log('user deleted');
       done();
     })
     .catch((err) => {
@@ -56,28 +60,16 @@ afterAll(async (done) => {
   await mongoDB.close(done);
 });
 
-describe('/POST user/add/', () => {
-  it('should create User and Principle MongoDB document with expected fields', async () => {
-    const uid = firebase.auth().currentUser.uid;
-    const res = await request(server).post('/user/add')
-      .send({
-        uid,
-        phoneNumber: 'user.test.js-1002003000'
-      });
-    expect(res.body.success).toEqual(true);
-    expect(res.body.result.result.ok).toBe(1);
-    const sampleOp = res.body.result.ops[0];
-    expect(sampleOp).toHaveProperty('content');
-  });
+// describe('twilio config', () => {
+//   it('should load database connection string', () => {
+//     expect(process.env.TWILIO_ACCOUNT_SID).not.toBeUndefined();
+//     expect(process.env.TWILIO_AUTH_TOKEN).not.toBeUndefined();
+//     expect(process.env.TWILIO_PHONE_NUMBER).not.toBeUndefined();
+//   });
+// });
 
-  it('should fail if phone number or uid not given', async () => {
-    const res = await request(server).post('/principles/add')
-      .send({
-        uid: undefined
-      });
-    expect(res.body).toEqual(
-      expect.objectContaining({
-        success: false
-      }));
+describe('sender has sent and archived all SMS actions', () => {
+  it('should generate new SMS Actions', () => {
+    expect(true).toBe(true);
   });
 });

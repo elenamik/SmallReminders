@@ -5,9 +5,6 @@ const SMSAction = mongoose.model('SMSAction');
 const moment = require('moment');
 const Principle = mongoose.model('Principle');
 
-// left off : SMS actions not saving to DB. also, this is sort of slow
-// 2. array returns a promise
-
 const generateDate = () => {
   // will choose random hourly time within 24 hours of current time
   return moment().add(Math.round(Math.random() * 24), 'hours')
@@ -48,15 +45,16 @@ const generateActions = (users) => {
   );
 };
 
-const scheduler = async () => {
+const scheduleSMSActions = async () => {
   try {
     const users = await User.find({ });
     const SMSActions = await generateActions(users);
     console.log('Writing new SMS actions:', SMSActions);
-    // SMSAction.collection.insertMany(SMSActions);
+    SMSAction.collection.insertMany(SMSActions);
+    return { success: true };
   } catch (err) {
     console.log('scheduler err', err);
   }
 };
 
-module.exports = scheduler;
+module.exports = scheduleSMSActions;
