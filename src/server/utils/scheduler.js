@@ -45,16 +45,16 @@ const generateActions = (users) => {
   );
 };
 
-const scheduleSMSActions = async () => {
+const createSMSActions = async () => {
   try {
     const users = await User.find({ });
     const SMSActions = await generateActions(users);
     console.log('Writing new SMS actions:', SMSActions);
-    SMSAction.collection.insertMany(SMSActions);
-    return { success: true };
+    const response = await SMSAction.collection.insertMany(SMSActions);
+    return { success: true, response };
   } catch (err) {
     console.log('scheduler err', err);
   }
 };
 
-module.exports = scheduleSMSActions;
+module.exports = createSMSActions;
