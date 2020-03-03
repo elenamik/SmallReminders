@@ -11,10 +11,18 @@ const createSMSActions = require('./scheduler');
 
 //  scheduled to run every hour, and check for any SMS actions 'new' and matching the time
 const startJob = () => {
-  cron.schedule('*/5 * * * * *', async () => {
+  cron.schedule(chronString(), async () => {
     const activeActions = await checkActiveActions();
     handleActions(activeActions);
   });
+};
+
+const chronString = () => {
+  // will run every minute (dev)
+  // return '* * * * *';
+
+  // will run every hour (prod)
+  return '0 * * * *';
 };
 
 const handleActions = async (activeActions) => {
@@ -109,4 +117,4 @@ const archiveActions = (actions) => {
   return true;
 };
 
-module.exports = { startJob, handleActions };
+module.exports = { startJob, handleActions, chronString };

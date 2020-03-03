@@ -11,7 +11,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const mongoDB = require('../utils/mongoDB');
 const SMSAction = mongoose.model('SMSAction');
 require('firebase/auth');
-const { handleActions } = require('../utils/sender');
+const { handleActions, chronString } = require('../utils/sender');
 const moment = require('moment');
 
 let server;
@@ -87,5 +87,11 @@ describe('when sender sees valid SMS actions', () => {
     const result = await handleActions(activeActions);
     expect(result.sendSMSResult).toBe(true);
     expect(result.archiveResult).toBe(true);
+  });
+});
+
+describe('sender scheduled by chron job', () => {
+  it('should schedule the job every hour', () => {
+    expect(chronString()).toBe('0 * * * *');
   });
 });
