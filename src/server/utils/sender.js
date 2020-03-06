@@ -18,7 +18,7 @@ const startJob = () => {
 };
 
 const chronString = () => {
-  // will run every minute (dev)
+  // will run every minute (change when testing in dev)
   // return '* * * * *';
 
   // will run every hour (prod)
