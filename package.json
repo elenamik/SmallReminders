@@ -4,7 +4,7 @@
   "description": "node.js backend to keep track and send messages",
   "private": true,
   "scripts": {
-    "test": "semistandard && NODE_ENV=TEST jest --detectOpenHandles",
+    "test": "semistandard && NODE_ENV=TEST jest --detectOpenHandles --silent",
     "start": "npm run dev-server & npm run dev-client ",
     "dev-client": "cross-env NODE_ENV=DEV webpack-dev-server --config webpack.dev.js --open --hot",
     "build-client": "webpack --config webpack.prod.js",

@@ -44,6 +44,8 @@ afterAll(async (done) => {
   const user = firebase.auth().currentUser;
   await User.deleteOne({ uid: user.uid });
   await Principle.deleteMany({ owner: user.uid });
+  await server.close();
+  await mongoDB.close();
   user.delete()
     .then(() => {
       done();
@@ -52,8 +54,6 @@ afterAll(async (done) => {
       console.log(err);
       done();
     });
-  await server.close();
-  await mongoDB.close(done);
 });
 
 describe('/POST user/add/', () => {
