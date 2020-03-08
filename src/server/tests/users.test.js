@@ -42,8 +42,10 @@ beforeAll(async (done) => {
 // Tear Down
 afterAll(async (done) => {
   const user = firebase.auth().currentUser;
-  await User.deleteOne({ owner: user.uid });
+  await User.deleteOne({ uid: user.uid });
   await Principle.deleteMany({ owner: user.uid });
+  await server.close();
+  await mongoDB.close();
   user.delete()
     .then(() => {
       done();
@@ -52,8 +54,6 @@ afterAll(async (done) => {
       console.log(err);
       done();
     });
-  await server.close();
-  await mongoDB.close(done);
 });
 
 describe('/POST user/add/', () => {
@@ -62,7 +62,7 @@ describe('/POST user/add/', () => {
     const res = await request(server).post('/user/add')
       .send({
         uid,
-        phoneNumber: '1002003000'
+        phoneNumber: 'user.test.js-1002003000'
       });
     expect(res.body.success).toEqual(true);
     expect(res.body.result.result.ok).toBe(1);
@@ -71,11 +71,9 @@ describe('/POST user/add/', () => {
   });
 
   it('should fail if phone number or uid not given', async () => {
-    const uid = firebase.auth().currentUser.uid;
     const res = await request(server).post('/principles/add')
       .send({
-        uid,
-        content: undefined
+        uid: undefined
       });
     expect(res.body).toEqual(
       expect.objectContaining({
@@ -83,9 +81,3 @@ describe('/POST user/add/', () => {
       }));
   });
 });
-
-// describe('Hello world', () => {
-//   it('should always pass', () => {
-//     expect(true).toEqual(true);
-//   });
-// });
