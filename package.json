@@ -34,6 +34,7 @@
     "express-validator": "^6.4.0",
     "firebase": "^7.6.2",
     "firebase-functions": "^3.3.0",
+    "moment": "^2.24.0",
     "mongodb": "^3.4.0",
     "mongoose": "^5.8.1",
     "react": "^16.12.0",
