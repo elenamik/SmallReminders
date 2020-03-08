@@ -18,8 +18,8 @@ const startJob = () => {
 };
 
 const chronString = () => {
-  // will run every minute (change when testing in dev)
-  // return '* * * * *';
+  // will run every second (change when testing in dev)
+  // return '* * * * * *';
 
   // will run every hour (prod)
   return '0 * * * *';
@@ -29,9 +29,9 @@ const handleActions = async (activeActions) => {
   try {
     if (activeActions) {
       const actions = await getActions();
-      console.log('SMS actions obtained', actions);
-      const response = await handleSend(actions);
-      return response;
+      console.log('SMS actions obtained for current time', actions);
+      const result = await handleSend(actions);
+      return result;
     } else {
       console.log('no current active actions, creating more');
       const result = await createSMSActions();
@@ -47,7 +47,6 @@ const handleSend = async (actions) => {
   const sendSMSResult = await sendSMS(actions);
   const archiveResult = await archiveActions(actions);
   const result = { sendSMSResult, archiveResult };
-  console.log('inside handleSend result', result);
   return result;
 };
 

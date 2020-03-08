@@ -45,7 +45,6 @@ const modifyInsertedActions = async (insertedIds) => {
     return ObjectId(insertedIds[key]);
   });
   await moveBackTimeStamp(actionIds);
-  console.log('actions', actionIds);
   actions = await SMSAction.find({
     _id: {
       $in: actionIds

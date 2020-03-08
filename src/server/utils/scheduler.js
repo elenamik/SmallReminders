@@ -48,7 +48,10 @@ const generateActions = (users) => {
 const createSMSActions = async () => {
   try {
     const users = await User.find({ });
-    const SMSActions = await generateActions(users);
+    let SMSActions = await generateActions(users);
+    SMSActions = SMSActions.filter((action) => {
+      return action != null;
+    });
     console.log('Writing new SMS actions:', SMSActions);
     const response = await SMSAction.collection.insertMany(SMSActions);
     return { success: true, response };
