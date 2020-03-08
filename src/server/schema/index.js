@@ -3,4 +3,3 @@
  */
 require('./Principle');
 require('./User');
-require('./SMSAction');

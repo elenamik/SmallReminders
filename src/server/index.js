@@ -7,8 +7,6 @@ const mongoDB = require('./utils/mongoDB');
 mongoDB.connect();
 require('./schema'); // must be required before routes
 const app = require('./server');
-const sender = require('./utils/sender');
-sender.startJob();
 
 // Constants
 const PORT = process.env.PORT || 8080;
