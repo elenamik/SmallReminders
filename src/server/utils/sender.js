@@ -19,10 +19,10 @@ const startJob = () => {
 
 const chronString = () => {
   // will run every second (change when testing in dev)
-  // return '* * * * * *';
+  return '*/10 * * * * *';
 
   // will run every hour (prod)
-  return '0 * * * *';
+  // return '0 * * * *';
 };
 
 const handleActions = async (activeActions) => {
