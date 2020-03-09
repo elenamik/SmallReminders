@@ -47,7 +47,7 @@ const generateActions = (users) => {
 
 const createSMSActions = async () => {
   try {
-    const users = await User.find({ });
+    const users = await User.find({ phoneNumber: { $ne: null } });
     let SMSActions = await generateActions(users);
     SMSActions = SMSActions.filter((action) => {
       return action != null;
