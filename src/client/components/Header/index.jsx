@@ -1,8 +1,8 @@
 import React from 'react';
-import './Header.scss';
+import { useHistory, Link } from 'react-router-dom';
 import LoggedIn from './LoggedIn';
-import LoginButtons from './LoginButtons';
-import { useHistory } from 'react-router-dom';
+import postIts from '../../const/post_its.png';
+import './Header.scss';
 
 function Header (props) {
   const history = useHistory();
@@ -10,16 +10,26 @@ function Header (props) {
     history.push('/');
   };
 
+  const LoggedInButtons = () => {
+    return (
+      <>
+        <Link className='header-button' to='/login'>Log in</Link>
+        <Link className='header-button' to='/register'>Sign Up</Link>
+      </>
+    );
+  };
+
   return (
     <div id='header-container'>
       <div id='header'>
-        <h1 id='header-title' onClick={handleClick}>Small Reminders</h1>
+        <h1 id='header-title' onClick={handleClick}>
+          <img id='header-icon' src={postIts} />
+          Small Reminders
+        </h1>
         <div id='header-side-container'>
           {props.user ? (
             <LoggedIn user={props.user} setUser={props.setUser} />
-          ) : (
-            <LoginButtons />
-          )}
+          ) : LoggedInButtons()}
         </div>
       </div>
     </div>

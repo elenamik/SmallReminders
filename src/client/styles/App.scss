@@ -1,11 +1,14 @@
 @import './colors.scss';
 body {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Montserrat', sans-serif;
   margin: 0;
 }
 p {
-  font-family: 'Libre Franklin', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   line-height: 200%;
+}
+a {
+  text-decoration: none;
 }
 
 .container {
@@ -16,24 +19,23 @@ p {
   max-width: 900px;
 }
 button {
-  font-family: 'Libre Franklin', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   text-decoration: none;
-  border-radius: 10px;
+  // border-radius: 10px;
   padding:1em;
   margin:2%;
-  max-width: 260px;
-  min-width: 240px;
+  min-width: 150px;
   text-align: center;
-  font-size: medium;
+  font-size: small;
   cursor: pointer;
 }
 a {
-  font-family: 'Libre Franklin', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 input {
   background: transparent;
   border: none;
-  border-bottom: 1px solid $primary-3;
+  border-bottom: 1px solid $primary;
   padding:1%;
   font-size: 1.5em;
   ;

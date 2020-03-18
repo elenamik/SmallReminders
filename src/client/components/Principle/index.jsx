@@ -1,5 +1,5 @@
 import React from 'react';
-import './Principle.scss';
+// import './Principle.scss';
 
 function Principle (props) {
   return (

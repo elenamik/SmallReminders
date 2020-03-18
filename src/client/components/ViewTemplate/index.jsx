@@ -6,7 +6,7 @@ function ViewTemplate (props) {
     <div className='view'>
       <div className='view-header-container'>
         <div className='view-header'>
-          <h1 className='view-header-text'>{props.title}</h1>
+          {props.title && <h1 className='view-header-text'>{props.title}</h1>}
         </div>
       </div>
       <div className='view-content-container'>

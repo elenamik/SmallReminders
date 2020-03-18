@@ -1,42 +1,51 @@
 @import '../../styles/colors.scss';
+
 #header-container {
-  color: $primary-4;
-  background: $complement-1;
-  min-height: 70px;
-  padding: 1% 4% 1% 4%;
+  color: $primary-dark;
+  background: $complement-light;
 }
+
 #header{
   display: flex;
-  flex-flow: row;
+  flex-direction: row;
   justify-content: space-between;
-  max-width: 900px;
+  max-width: 80%;
   margin: auto;
 }
+
 #header-title {
   align-self: flex-end;
-  font-size: 300%;
+  font-size: 18;
+  color: $primary;
+  font-weight: bold;
   cursor: pointer;
+  min-width: 350px;
 }
+
+#header-icon {
+  height: 30px;
+  width: 30px;
+  padding: 1%;
+}
+
 #header-side-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 30%;
+  flex-direction: row;
 }
+
 .header-button {
   text-decoration: none;
-  color: $primary-4;
-  background-color: $complement-0;
-  border-radius: 10px;
+  color: $complement;
+  background-color: $primary;
   padding:1em;
   margin:2%;
-  min-width: 70%;
+  width: 147px;
+  height: 20px;
   text-align: center;
+  font-size: 18;
 }
+
 .header-button:hover {
-  background-color: $complement-3;
-}
-#logout-button {
-  background-color: $primary-3;
-  color: $primary-1;
+  background-color: $primary-dark;
+  color: $complement-dark;
 }
