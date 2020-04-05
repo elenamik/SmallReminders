@@ -33,4 +33,7 @@ MONGO_URL=<url to MongoDB>
 MONGO_USER=<database username>
 MONGO_PW=<database user password>
 MONGO_DBNAME=<database name>
+TWILIO_ACCOUNT_SID=<account id>
+TWILIO_AUTH_TOKEN=<auth token>
+TWILIO_PHONE_NUMBER=<phone number>
 ```
