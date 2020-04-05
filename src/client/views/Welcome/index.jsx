@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import ViewTemplate from '../../components/ViewTemplate';
 import textIllustration from '../../const/texts_illustration.png';
 import downArrows from '../../const/down_arrows.png';
@@ -8,7 +8,15 @@ import phone from '../../const/phone.png';
 import Demo from '../../components/Demo';
 import './Welcome.scss';
 
-function Welcome () {
+function Welcome ({ user }) {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const awaitUser = async () => {
+      await user;
+      setLoading(false);
+    };
+    awaitUser();
+  });
   return (
     <ViewTemplate title='' id='welcome-view'>
       <div id='hero'>
@@ -44,7 +52,7 @@ function Welcome () {
       </div>
       <div className='demo-subcontent'>
         Try the demo
-        <Demo />
+        {!loading && !user && <Demo />}
       </div>
     </ViewTemplate>
   );

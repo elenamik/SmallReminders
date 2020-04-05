@@ -1,0 +1,62 @@
+@import '../../styles/colors.scss';
+.principle-editor-container {
+  color: $primary-4;
+  background-color: $primary-1;
+  height: 40%;
+  width: 100%;
+  border-radius: 5px;
+  text-align: center;
+  margin: 1%;
+  padding: 1%;
+  padding-top: 5%;
+  animation-name: modalEnter;
+  animation-duration: .3s;
+}
+
+@keyframes modalEnter {
+  from {transform: scale(0.2); opacity: 0;}
+  to {transform: scale(1.0); opacity: 1;}
+}
+
+#principle-editor-form {
+  background-color: $primary-1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 5%;
+  height: 60%;
+}
+#principle-editor-input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 1em;
+}
+#principle-editor-label {
+  position: absolute;
+  bottom:0px;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  pointer-events: none;
+  font-size: 1.5em;
+}
+
+ #principle-editor-label-text {
+   position: absolute;
+   bottom: 5px;
+   left: 0px;
+   transition: all 0.3s ease;
+ }
+
+#principle-editor-input:focus + #principle-editor-label #principle-editor-label-text,
+#principle-editor-input:valid + #principle-editor-label #principle-editor-label-text{
+   transform: translateY(-370%);
+   color: $complement-1;
+}
+
+#principle-editor-buttons {
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+}

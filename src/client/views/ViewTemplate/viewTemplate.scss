@@ -1,4 +1,14 @@
 @import '../../styles/colors.scss';
+.app {
+  display: flex;
+}
+.view {
+  flex-grow: 1;
+}
+html, body {
+  height: 100%;
+  width: 100%
+}
 .view-header-container{
   background: $primary;
   //padding: 0 4% 0 4%;
@@ -6,17 +16,16 @@
 }
 .view-header {
   display: flex;
-  flex-flow: row;
+  flex-direction: column;
   justify-content: space-between;
   max-width: 80%;
   margin:auto;
 }
 .view-header-text {
-  align-self: flex-end;
+  align-self: flex-start;
   font-size: 180%;
   color: $complement;
 }
-
 .view-content-container {
   //padding: 0 4% 0 4%;
 }

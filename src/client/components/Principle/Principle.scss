@@ -17,4 +17,12 @@
   justify-content: center;
   align-content: center;
   flex-direction: column;
+
+  animation-name: enter;
+  animation-duration: .3s;
+}
+
+@keyframes enter {
+  from {transform: scale(0.2); opacity: 0;}
+  to {transform: scale(1.0); opacity: 1;}
 }

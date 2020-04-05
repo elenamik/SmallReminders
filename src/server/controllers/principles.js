@@ -4,15 +4,18 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const Principle = mongoose.model('Principle');
-const isEmpty = require('./validate').isEmpty;
+const { validationResult } = require('express-validator');
+const isEmpty = require('../utils/validate').isEmpty;
 
 exports.add = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      throw new Error(JSON.stringify({ errors: errors.array() }));
+    }
+
     const uid = req.body.uid;
     const content = req.body.content;
-    if (isEmpty(content)) {
-      throw new Error('expected non empty value for content');
-    }
     const principle = new Principle({
       content,
       owner: uid
@@ -22,7 +25,7 @@ exports.add = async (req, res, next) => {
     res.send({ success: true, result });
   } catch (err) {
     console.log('principles.add error', err);
-    res.send({ success: false, message: err });
+    res.send({ success: false, message: String(err) });
   }
 };
 
@@ -33,6 +36,7 @@ exports.add = async (req, res, next) => {
  * ]
  */
 // not tested, but used in testing when creating a new user
+// only used internally
 exports.addMany = async (req, res, next) => {
   try {
     const uid = req.body.uid;
@@ -63,6 +67,11 @@ exports.addMany = async (req, res, next) => {
  */
 exports.read = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      throw new Error(JSON.stringify({ errors: errors.array() }));
+    }
+
     const query = { owner: req.body.uid };
     console.log('reading principles for ', JSON.stringify(query));
     const result = await Principle.find(query);
@@ -85,6 +94,11 @@ exports.read = async (req, res, next) => {
  */
 exports.delete = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      throw new Error(JSON.stringify({ errors: errors.array() }));
+    }
+
     const uid = req.body.uid;
     const targetId = req.body.id;
 
@@ -114,6 +128,7 @@ exports.delete = async (req, res, next) => {
 };
 
 // not tested - but it is used to bulk delete when testing creating of new user
+// only used internally
 exports.deleteAll = async (req, res, next) => {
   try {
     await Principle.deleteAll({ owner: req.body.uid });
@@ -130,6 +145,11 @@ exports.deleteAll = async (req, res, next) => {
  */
 exports.update = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      throw new Error(JSON.stringify({ errors: errors.array() }));
+    }
+
     const uid = req.body.uid;
     const targetId = req.body.id;
     const content = req.body.content;
