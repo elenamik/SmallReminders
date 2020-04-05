@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import Principle from '../Principle';
-<<<<<<< HEAD
-// import './PrinciplesList.scss';
-=======
 import CircleButton from '../CircleButton';
 import PrincipleEditor from '../PrincipleEditor';
 import Modal from '../Modal';
 import { ADD_PRINCIPLE, DELETE_PRINCIPLE_BY_ID, UPDATE_PRINCIPLE_BY_ID } from '../../redux/constants';
 import './PrinciplesList.scss';
->>>>>>> a6969e5caaac7fda96a237da9e90f9ba6ca40cf8
 
 function PrinciplesList ({ data, update }) {
   const [editing, setEditing] = useState(false);

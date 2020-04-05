@@ -1,7 +1,7 @@
 @import '../../styles/colors.scss';
 .principle-editor-container {
-  color: $primary-4;
-  background-color: $primary-1;
+  color: $primary-light;
+  background-color: $primary;
   height: 40%;
   width: 100%;
   border-radius: 5px;
@@ -19,7 +19,7 @@
 }
 
 #principle-editor-form {
-  background-color: $primary-1;
+  background-color: $primary;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -31,6 +31,7 @@
   width: 100%;
   outline: none;
   font-size: 1em;
+  color: $primary-light;
 }
 #principle-editor-label {
   position: absolute;
@@ -52,7 +53,7 @@
 #principle-editor-input:focus + #principle-editor-label #principle-editor-label-text,
 #principle-editor-input:valid + #principle-editor-label #principle-editor-label-text{
    transform: translateY(-370%);
-   color: $complement-1;
+   color: $complement;
 }
 
 #principle-editor-buttons {

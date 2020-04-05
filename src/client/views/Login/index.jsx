@@ -5,7 +5,7 @@ import ViewTemplate from '../ViewTemplate';
 import Error from '../../components/Error';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-// import './Login.scss';
+import './Login.scss';
 
 function Login (props) {
   const history = useHistory();

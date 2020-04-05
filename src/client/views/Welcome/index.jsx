@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import ViewTemplate from '../../components/ViewTemplate';
+import React, { useEffect, useState } from 'react';
+import ViewTemplate from '../ViewTemplate';
 import textIllustration from '../../const/texts_illustration.png';
 import downArrows from '../../const/down_arrows.png';
 import book from '../../const/book.png';
@@ -50,10 +50,7 @@ function Welcome ({ user }) {
         </div>
         <img className='subtext-icon' src={phone} />
       </div>
-      <div className='demo-subcontent'>
-        Try the demo
-        {!loading && !user && <Demo />}
-      </div>
+      {!loading && !user && <Demo />}
     </ViewTemplate>
   );
 }

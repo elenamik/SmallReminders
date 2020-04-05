@@ -6,7 +6,7 @@ import firebase from 'firebase/app';
 import { getServerURL } from '../../config/urls';
 import axios from 'axios';
 import Error from '../../components/Error';
-// import './SignUp.scss';
+import './SignUp.scss';
 import 'babel-polyfill';
 
 function SignUp (props) {

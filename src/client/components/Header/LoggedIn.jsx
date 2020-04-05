@@ -11,11 +11,13 @@ function LoggedIn (props) {
   };
 
   return (
-    <>
-      Logged in as: {props.user.email}
+    <div id='logged-in'>
+      <div id='logged-in-as-text'>
+        Logged in as: {props.user.email}
+      </div>
       <Link className='header-button' to='/dashboard'>Dashboard</Link>
       <Link className='header-button' onClick={handleLogout}>Log Out</Link>
-    </>
+    </div>
   );
 }
 

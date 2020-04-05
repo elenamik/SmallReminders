@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import LoggedIn from './LoggedIn';
 import postIts from '../../const/post_its.png';
+import hamburgerNav from '../../const/hamburger.png';
 import './Header.scss';
 
 function Header (props) {
@@ -30,6 +31,9 @@ function Header (props) {
           {props.user ? (
             <LoggedIn user={props.user} setUser={props.setUser} />
           ) : LoggedInButtons()}
+        </div>
+        <div id='hamburger-nav-container'>
+          <img id='hamburger-nav' src={hamburgerNav} />
         </div>
       </div>
     </div>
