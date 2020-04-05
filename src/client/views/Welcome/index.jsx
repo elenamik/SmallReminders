@@ -5,6 +5,7 @@ import downArrows from '../../const/down_arrows.png';
 import book from '../../const/book.png';
 import trashBin from '../../const/trashbin.png';
 import phone from '../../const/phone.png';
+import Demo from '../../components/Demo';
 import './Welcome.scss';
 
 function Welcome () {
@@ -40,6 +41,10 @@ function Welcome () {
         This project is a response to that. It serves as a place for you to store your Principles, and enable random reminders so they never fade into the background.
         </div>
         <img className='subtext-icon' src={phone} />
+      </div>
+      <div className='demo-subcontent'>
+        Try the demo
+        <Demo />
       </div>
     </ViewTemplate>
   );

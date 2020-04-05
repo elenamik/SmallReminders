@@ -5,6 +5,7 @@ import SignUp from './views/SignUp';
 import Login from './views/Login';
 import Dashboard from './views/Dashboard';
 import firebase from 'firebase/app';
+import Footer from './components/Footer';
 import 'babel-polyfill'; // lets you use async / await
 
 import './styles/App.scss';
@@ -54,6 +55,7 @@ function App () {
           </Route>
         </Switch>
       </Router>
+      <Footer />
     </div>
   );
 }
