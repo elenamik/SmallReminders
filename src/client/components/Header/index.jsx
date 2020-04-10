@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import LoggedIn from './LoggedIn';
 import postIts from '../../const/post_its.png';
 import hamburgerNav from '../../const/hamburger.png';
+import Drawer from '../Drawer';
+import Surface from '../Surface';
 import './Header.scss';
 
-function Header (props) {
+function Header ({ user, setUser, handleLogOut }) {
+  const [drawer, setDrawer] = useState(false);
   const history = useHistory();
   const handleClick = () => {
     history.push('/');
@@ -21,22 +24,30 @@ function Header (props) {
   };
 
   return (
-    <div id='header-container'>
-      <div id='header'>
-        <h1 id='header-title' onClick={handleClick}>
-          <img id='header-icon' src={postIts} />
-          Small Reminders
-        </h1>
-        <div id='header-side-container'>
-          {props.user ? (
-            <LoggedIn user={props.user} setUser={props.setUser} />
-          ) : LoggedInButtons()}
-        </div>
-        <div id='hamburger-nav-container'>
-          <img id='hamburger-nav' src={hamburgerNav} />
+    <>
+      <div id='header-container'>
+        <div id='header'>
+          <h1 id='header-title' onClick={handleClick}>
+            <img id='header-icon' src={postIts} />
+            Small Reminders
+          </h1>
+          <div id='header-side-container'>
+            {user ? (
+              <LoggedIn user={user} handleLogOut={handleLogOut} />
+            ) : LoggedInButtons()}
+          </div>
+          <div id='hamburger-nav-container'>
+            <img id='hamburger-nav' src={hamburgerNav} onClick={() => setDrawer(true)} />
+          </div>
         </div>
       </div>
-    </div>
+      {drawer &&
+        <div id='nav-drawer'>
+          <Surface handleClose={() => setDrawer(false)}>
+            <Drawer user={user} handleLogout={handleLogOut} />
+          </Surface>
+        </div>}
+    </>
   );
 }
 

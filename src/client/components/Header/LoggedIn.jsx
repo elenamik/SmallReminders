@@ -1,22 +1,20 @@
 import React from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import firebase from 'firebase/app';
 
-function LoggedIn (props) {
+function LoggedIn ({ user, handleLogout }) {
   const history = useHistory();
-  const handleLogout = () => {
-    props.setUser(false);
-    firebase.auth().signOut();
+  const logout = () => {
+    handleLogout();
     history.push('/');
   };
 
   return (
     <div id='logged-in'>
       <div id='logged-in-as-text'>
-        Logged in as: {props.user.email}
+        Logged in as: {user.email}
       </div>
       <Link className='header-button' to='/dashboard'>Dashboard</Link>
-      <Link className='header-button' onClick={handleLogout}>Log Out</Link>
+      <Link className='header-button' to='/' onClick={logout}>Log Out</Link>
     </div>
   );
 }

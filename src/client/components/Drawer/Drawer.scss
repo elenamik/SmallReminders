@@ -1,0 +1,33 @@
+@import '../../styles/colors.scss';
+#drawer {
+  padding-top: 10%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  background-color: $primary-light;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  width: 30%;
+  box-shadow: 2px 1px $opaque;
+  // transform: translateX(-100%);
+  transition: ease-in;
+}
+
+#drawer.open{
+  transform: translateX(0)
+}
+
+.drawer-button {
+  margin: 10%;
+  text-decoration: none;
+  color: $primary-dark;
+}
+
+.drawer-button:hover {
+  text-decoration: none;
+  color: $complement;
+  box-shadow: 2px 2px $opaque;
+}
+

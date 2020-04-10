@@ -7,7 +7,6 @@ import Dashboard from './views/Dashboard';
 import Footer from './components/Footer';
 import firebase from 'firebase/app';
 import 'babel-polyfill'; // lets you use async / await
-
 import './styles/App.scss';
 import {
   HashRouter as Router,
@@ -29,6 +28,11 @@ function App () {
     });
   };
 
+  const handleLogOut = () => {
+    setUser(false);
+    firebase.auth().signOut();
+  };
+
   useEffect(() => {
     console.log('attempting sign in');
     if (!user) {
@@ -39,7 +43,7 @@ function App () {
   return (
     <>
       <Router>
-        <Header user={user} setUser={setUser} />
+        <Header user={user} setUser={setUser} handleLogOut={handleLogOut}/>
         <Switch>
           <Route exact path='/'>
             <Welcome user={user} />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import ViewTemplate from '../ViewTemplate';
 import textIllustration from '../../const/texts_illustration.png';
 import downArrows from '../../const/down_arrows.png';
@@ -10,6 +10,7 @@ import './Welcome.scss';
 
 function Welcome ({ user }) {
   const [loading, setLoading] = useState(true);
+  const myRef = useRef();
   useEffect(() => {
     const awaitUser = async () => {
       await user;
@@ -17,6 +18,9 @@ function Welcome ({ user }) {
     };
     awaitUser();
   });
+  const scrollToRef = () => {
+    myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
   return (
     <ViewTemplate title='' id='welcome-view'>
       <div id='hero'>
@@ -24,14 +28,14 @@ function Welcome ({ user }) {
           <h1>
             Welcome to Small Reminders!
           </h1>
-          <p>A way to randomly remind yourself of meaningful concepts</p>
+          <p>A place for you to store concepts meaningful to you, and send yourself reminders!</p>
         </div>
         <img id='hero-image' src={textIllustration} />
       </div>
-      <div id='learn-more-button'>
+      <button id='learn-more-button' onClick={scrollToRef} ref={myRef}>
         <span>Learn More</span>
         <img id='down-arrows' src={downArrows} />
-      </div>
+      </button>
       <div className='welcome-subcontent'>
         <div className='subtext'>
           In the vein of Ray Dalios Principles, there are lessons you learn in life which can help you make decisions in the future.
