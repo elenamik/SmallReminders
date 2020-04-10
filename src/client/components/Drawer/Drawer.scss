@@ -11,13 +11,9 @@
   left: 0;
   width: 30%;
   box-shadow: 2px 1px $opaque;
-  // transform: translateX(-100%);
   transition: ease-in;
 }
 
-#drawer.open{
-  transform: translateX(0)
-}
 
 .drawer-button {
   margin: 10%;

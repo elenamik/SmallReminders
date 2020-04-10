@@ -1,4 +1,6 @@
 @import '../../styles/colors.scss';
+
+/* mobile */
 .app {
   display: flex;
 }
@@ -22,7 +24,7 @@ html, body {
 }
 .view-header-text {
   align-self: flex-start;
-  font-size: 180%;
+  font-size: 100%;
   color: $complement;
 }
 
@@ -30,5 +32,12 @@ html, body {
   display: flex;
   justify-content: space-between;
   max-width: 80%;
-  margin:auto;
+  margin: auto;
+}
+
+/* larger screens */
+@media only screen and (min-width: 768px) {
+  .view-header-text {
+    font-size: 180%;
+  }
 }

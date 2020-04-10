@@ -1,5 +1,7 @@
 @import '../../styles/colors.scss';
 
+
+/* mobile */
 #welcome-view {
   display: flex;
   flex-direction: column;
@@ -8,7 +10,6 @@
   padding-right: 5%;
 }
 
-/* mobile */
 #hero {
   padding-top: 5%;
   display: flex;
@@ -18,34 +19,30 @@
   padding-bottom: 5%;
 }
 #hero-text {
-  font-size: 0.8em;
+  margin-top: 20%;
   display: flex;
   flex-direction: column;
   color: $primary-dark;
+  text-align: center;
 }
 #hero-image {
-  height: 50%;
-  width: 50%;
+  height: 80%;
+  width: 80%;
   display: flex;
   margin: auto;
+  margin-top: 20%;
 }
 #learn-more-button {
-  text-decoration: none;
   color: $complement;
   background-color: $primary;
-  padding:1em;
-  margin:10%;
+  margin:auto;
+  margin-top: 10%;
   width: 20%;
-  font-size: 0.5em;
+  font-size: 0.8em;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: auto;
   align-items: center;
-}
-#learn-more-button:hover {
-  background-color: $primary-dark;
-  color: $complement-dark;
 }
 #down-arrows {
   height: 10px;
@@ -61,13 +58,14 @@
 .welcome-subcontent {
   display: flex;
   flex-direction: row;
-  width: 80%;
+  width: 90%;
   margin: auto;
-  margin-top: 10%;
+  margin-top: 30%;
+  align-items: center;
 }
 .subtext {
   width:80%;
-  font-size: 0.6em;
+  font-size: 1em;
   font-weight:bold;
   margin:auto;
   color: $primary-dark;
@@ -78,15 +76,23 @@
   text-align: center;
 }
 
-/* larger screens*/
+/* larger screens */
 @media only screen and (min-width: 768px) {
+  #welcome-view {
+    display: flex;
+    flex-direction: column;
+    max-width: 1300px;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
   #hero {
-    padding-top: 5%;
     display: flex;
     flex-direction: row;
     margin: auto;
     align-items: space-between;
     width: 85%;
+    padding-top: 0%;
 
   }
   #hero-text {
@@ -95,6 +101,7 @@
     color: $primary;
     padding-right: 3%;
     font-size: 1.2em;
+    text-align: left;
   }
   #hero-image {
     height: 20%;
