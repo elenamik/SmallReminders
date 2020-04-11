@@ -7,7 +7,7 @@ import { ADD_PRINCIPLE, DELETE_PRINCIPLE_BY_ID, UPDATE_PRINCIPLE_BY_ID } from '.
 import './PrinciplesList.scss';
 
 function PrinciplesList ({ data, update }) {
-  const [editing, setEditing] = useState(true);
+  const [editing, setEditing] = useState(false);
   const handeClick = () => {
     setEditing(true);
   };
