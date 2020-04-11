@@ -1,27 +1,26 @@
 @import '../../styles/colors.scss';
-#surface{
-  background-color: $primary-4-opaque;
-  position: fixed;
-  height: 100%;
+/* mobile */
+
+#modal-container{
+  z-index: 100;
   width: 100%;
-  top: 0;
-  left: 0;
+  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center
 }
-#modal-container{
-  width: 60%;
-  height: 60%;
-}
-
 #modal-title{
     text-align: center;
-    margin-bottom:5%;
-    font-size:1.2em;
+    margin-bottom: 5%;
+    font-size: 1.2em;
 }
-.buttons{
-  display:flex;
-  flex-direction: row;
-  justify-content: space-around;
+
+
+/* large screens */
+@media only screen and (min-width: 768px) { 
+  #modal-title{
+      text-align: center;
+      margin-bottom:5%;
+      font-size: 1.2em;
+  }
 }

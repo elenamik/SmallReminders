@@ -1,0 +1,36 @@
+@import '../../styles/colors.scss';
+/* mobile */
+#scroll-to-button {
+  color: $complement;
+  background-color: $primary;
+  margin:auto;
+  margin-top: 10%;
+  width: 20%;
+  font-size: 0.8em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#down-arrows {
+  height: 10px;
+  width: 20px;
+  margin: auto;
+  padding-top: 2px;
+  justify-content: center;
+}
+
+/* larger screens */
+@media only screen and (min-width: 768px) {
+  #scroll-to-button {
+    width: 40%;
+    font-size: 1.5em;
+  }
+  #down-arrows {
+    height: 20px;
+    width: 40px;
+    margin: auto;
+    padding-top: 2px;
+    justify-content: center;
+  }
+}

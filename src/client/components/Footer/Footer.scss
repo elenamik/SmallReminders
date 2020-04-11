@@ -1,26 +1,71 @@
 @import '../../styles/colors.scss';
+/* mobile */
 #footer-container {
   display: flex;
   margin-top: 20%;
-  color: $primary-1;
-  background: $primary-4;
-  min-height: 70px;
-  padding: 1% 4% 1% 4%;
+  color: $complement-light;
+  background: $primary;
 }
 #footer-content{
   display: flex;
   justify-content: center;
   text-align: center;
-  align-self: center;
+  align-content: center;
   flex-flow: row;
-  width: 80%;
   margin: auto;
+  height: 40px;
+}
+
+.footer-text {
+  font-size: 0.5em;
+  margin: auto;
+  min-width: 170px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
 #github-link{
-  color: $primary-1;
-  padding-left: 1%
+  color: $complement-light;
+  padding-left: 1%;
+  text-decoration: underline;
 }
 #github-link:hover{
   color: white;
+}
+
+#git-mark {
+  margin: 2%;
+}
+
+/* larger screens */
+@media only screen and (min-width: 768px) {
+  #footer-content{
+    margin: auto;
+    height: 100px;
+  }
+  #footer-content{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-flow: row;
+    width: 80%;
+    margin: auto;
+  }
+  
+  .footer-text {
+    font-size: 1.2em;
+    min-width: 400px;
+  }
+  
+  #github-link{
+    text-decoration: none;
+    cursor: pointer;
+  }
+  #github-link:hover{
+    color: white;
+  }
+  
+
 }

@@ -4,6 +4,7 @@ import { getServerURL } from '../../config/urls';
 import ViewTemplate from '../ViewTemplate';
 import PrinciplesList from '../../components/PrinciplesList';
 import { ADD_PRINCIPLE, DELETE_PRINCIPLE_BY_ID, UPDATE_PRINCIPLE_BY_ID } from '../../redux/constants';
+import './Dashboard.scss';
 
 function Dashboard ({ user }) {
   const [data, setData] = useState(false);

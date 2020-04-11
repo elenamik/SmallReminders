@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import ViewTemplate from '../ViewTemplate';
+import textIllustration from '../../const/texts_illustration.png';
+import book from '../../const/book.png';
+import trashBin from '../../const/trashbin.png';
+import phone from '../../const/phone.png';
 import Demo from '../../components/Demo';
-import Announcement from '../../components/Announcement';
+import ScrollToButton from '../../components/ScrollToButton';
 import './Welcome.scss';
 
 function Welcome ({ user }) {
   const [loading, setLoading] = useState(true);
+  const aboutRef = useRef();
   useEffect(() => {
     const awaitUser = async () => {
       await user;
@@ -13,17 +18,42 @@ function Welcome ({ user }) {
     };
     awaitUser();
   });
+  const scrollToDetails = () => {
+    aboutRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
-    <ViewTemplate title='Welcome to Small Reminders!' id='welcome-view'>
-      <Announcement message='the ability to send yourself texts is coming soon!' />
-      <p>
-    You may be familiar with Ray Dalio's famous concept of principles - lessons you learn in life, and keep with you to influence your future decisions.
-    The challenge that our media-rich culture presents is the fact that we may discover such a lesson, and forget it after a few days.
-    Despite having written it down in your notes, maybe even hung it up on your wall, it eventually fades into the background and you forget.
-      </p>
-      <p>
-    Feel free to use this app as memorable repository, as well as a tool to send yourself reminders.
-      </p>
+    <ViewTemplate title='' id='welcome-view'>
+      <div id='hero'>
+        <div id='hero-text'>
+          <h1>
+            Welcome to Small Reminders!
+          </h1>
+          <p>A place for you to store concepts meaningful to you, and send yourself reminders!</p>
+        </div>
+        <img id='hero-image' src={textIllustration} />
+      </div>
+      <div id='scroll-to-details'>
+        <ScrollToButton text='Learn More' scrollToRef={scrollToDetails} />
+      </div>
+      <div className='welcome-subcontent' ref={aboutRef}>
+        <div className='subtext'>
+          In the vein of Ray Dalios Principles, there are lessons you learn in life which can help you make decisions in the future.
+        </div>
+        <img className='subtext-icon' src={book} />
+      </div>
+      <div className='welcome-subcontent'>
+        <img className='subtext-icon' src={trashBin} />
+        <div className='subtext'>
+        In our information overloaded culture, it can be hard to keep track of these things, and we frequently forget them.
+        </div>
+      </div>
+      <div className='welcome-subcontent'>
+        <div className='subtext'>
+        This project is a response to that. It serves as a place for you to store your Principles, and enable random reminders so they never fade into the background.
+        </div>
+        <img className='subtext-icon' src={phone} />
+      </div>
       {!loading && !user && <Demo />}
     </ViewTemplate>
   );

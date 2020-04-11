@@ -1,13 +1,14 @@
 import React from 'react';
+import Surface from '../Surface';
 import './Modal.scss';
 
-function GenericModal ({ children }) {
+function GenericModal ({ children, handleClose }) {
   return (
-    <div id='surface'>
+    <Surface handleClose={handleClose}>
       <div id='modal-container'>
         {children}
       </div>
-    </div>
+    </Surface>
   );
 }
 

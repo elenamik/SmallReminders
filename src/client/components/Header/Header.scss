@@ -1,42 +1,96 @@
 @import '../../styles/colors.scss';
 #header-container {
-  color: $primary-4;
-  background: $complement-1;
-  min-height: 70px;
-  padding: 1% 4% 1% 4%;
+  color: $primary-dark;
+  background: $complement-light;
 }
 #header{
   display: flex;
-  flex-flow: row;
+  flex-direction: row;
   justify-content: space-between;
-  max-width: 900px;
+  max-width: 80%;
   margin: auto;
 }
+
+/* mobile */
 #header-title {
+  display: flex;
+  flex-direction: row;
   align-self: flex-end;
-  font-size: 300%;
+  align-items: center;
+  font-size: 1em;
+  color: $primary;
+  font-weight: bold;
+  min-width: 20px;
+}
+#header-icon {
+  height: 10%;
+  width: 10%;
+  padding: 1%;
+}
+#hamburger-nav {
+  height: 30%;
+  width: 80%;
   cursor: pointer;
 }
-#header-side-container {
+#hamburger-nav-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 30%;
 }
-.header-button {
-  text-decoration: none;
-  color: $primary-4;
-  background-color: $complement-0;
-  border-radius: 10px;
-  padding:1em;
-  margin:2%;
-  min-width: 70%;
-  text-align: center;
+#logged-in {
+  display: none;
 }
-.header-button:hover {
-  background-color: $complement-3;
+#header-side-container {
+  display: none;
 }
-#logout-button {
-  background-color: $primary-3;
-  color: $primary-1;
+
+/* large screens */
+@media only screen and (min-width: 768px) {
+  #header-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    min-width: 35%;
+    cursor: pointer;
+  }
+  #hamburger-nav-container {
+    display: none;
+  }
+  #header-side-container {
+    display: flex;
+    flex-direction: row;
+  }
+  #header-icon {
+    height: 22px;
+    width: 22px;
+    padding: 1%;
+  }
+  .header-button {
+    text-decoration: none;
+    color: $complement;
+    background-color: $primary;
+    padding:1em;
+    margin:2%;
+    width: 30%;
+    min-width: 100px;
+    height: 20px;
+    text-align: center;
+    font-size: 1em;
+  }
+  .header-button:hover {
+    background-color: $primary-dark;
+    color: $complement-dark;
+  }
+  #logged-in {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  #logged-in-as-text {
+    margin: auto;
+    text-align: right;
+    font-size: 1em;
+  }
+  #nav-drawer {
+    display: none
+  }
 }

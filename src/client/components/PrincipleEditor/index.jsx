@@ -27,8 +27,13 @@ function PrincipleEditor ({ data, handleClose, handleSaveNew, handleDelete, hand
     handleDelete({ id: data.id });
     handleClose();
   };
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <div className='principle-editor-container'>
+    <div className='principle-editor-container' onClick={handleClick}>
       <form id='principle-editor-form'>
         <textarea
           id='principle-editor-input'
@@ -47,9 +52,12 @@ function PrincipleEditor ({ data, handleClose, handleSaveNew, handleDelete, hand
         </label>
       </form>
       <div id='principle-editor-buttons'>
-        <CircleButton name='exit' icon={'\u241B'} onClick={handleClose} />
-        {data.id && <CircleButton name='delete' icon={'\u2421'} onClick={handleDeletion} />}
-        <CircleButton name='submit' icon={'\u2713'} onClick={handleSubmit} />
+        <div className='principle-editor-button'>
+          {data.id && <CircleButton name='delete' icon={'\u2421'} onClick={handleDeletion} />}
+        </div>
+        <div className='principle-editor-button'>
+          <CircleButton name='submit' icon={'\u2713'} onClick={handleSubmit} />
+        </div>
       </div>
     </div>
   );

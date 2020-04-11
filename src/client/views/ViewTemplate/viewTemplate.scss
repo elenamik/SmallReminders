@@ -1,37 +1,36 @@
 @import '../../styles/colors.scss';
-.app {
-  display: flex;
-}
+
+/* mobile */
 .view {
   flex-grow: 1;
 }
-html, body {
-  height: 100%;
-  width: 100%
-}
 .view-header-container{
-  background: $primary-3;
-  padding: 0 4% 0 4%;
+  background: $primary;
   margin-bottom: 2%;
 }
 .view-header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 900px;
+  max-width: 80%;
   margin:auto;
 }
 .view-header-text {
   align-self: flex-start;
-  font-size: 180%;
-  color: $complement-1;
+  font-size: 100%;
+  color: $complement;
 }
-.view-content-container {
-  padding: 0 4% 0 4%;
-}
+
 .view-content {
   display: flex;
   justify-content: space-between;
-  max-width: 900px;
-  margin:auto;
+  max-width: 80%;
+  margin: auto;
+}
+
+/* larger screens */
+@media only screen and (min-width: 768px) {
+  .view-header-text {
+    font-size: 180%;
+  }
 }

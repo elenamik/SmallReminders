@@ -1,10 +1,11 @@
 @import '../../styles/colors.scss';
+/* mobile */
 .principle-editor-container {
-  color: $primary-4;
-  background-color: $primary-1;
-  height: 40%;
-  width: 100%;
-  border-radius: 5px;
+  color: $primary;
+  background-color: $primary-light;
+  border-radius: 100px;
+  height: 50%;
+  width: 80%;
   text-align: center;
   margin: 1%;
   padding: 1%;
@@ -12,51 +13,80 @@
   animation-name: modalEnter;
   animation-duration: .3s;
 }
-
-@keyframes modalEnter {
-  from {transform: scale(0.2); opacity: 0;}
-  to {transform: scale(1.0); opacity: 1;}
-}
-
 #principle-editor-form {
-  background-color: $primary-1;
   display: flex;
   flex-direction: column;
   position: relative;
+  top: 10%;
   margin: 5%;
-  height: 60%;
+  height: 65%;
 }
 #principle-editor-input {
   height: 100%;
   width: 100%;
   outline: none;
-  font-size: 1em;
+  font-size: 1.3em;
+  color: $primary;
 }
 #principle-editor-label {
   position: absolute;
-  bottom:0px;
+  top: -75%;
   height: 100%;
   width: 100%;
   text-align: left;
   pointer-events: none;
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
-
  #principle-editor-label-text {
    position: absolute;
    bottom: 5px;
    left: 0px;
    transition: all 0.3s ease;
  }
-
 #principle-editor-input:focus + #principle-editor-label #principle-editor-label-text,
 #principle-editor-input:valid + #principle-editor-label #principle-editor-label-text{
-   transform: translateY(-370%);
-   color: $complement-1;
+   transform: translateY(-220%);
+   color: $complement;
+   text-shadow:  3px 3px 9px $opaque;
 }
-
 #principle-editor-buttons {
-  justify-content: flex-end;
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+  position: relative;
+  top: 20%;
+  right: 10%;
+}
+.principle-editor-button {
+  margin: 1%;
+}
+
+
+/* large screens */
+@media only screen and (min-width: 768px) {
+  .principle-editor-container {
+    height: 30%;
+    width: 40%;
+  }
+  #principle-editor-form {
+    top: 10%;
+
+  }
+  #principle-editor-input {
+    font-size: 1.6em;
+  }
+  #principle-editor-label {
+    font-size: 2em;
+  }
+  #principle-editor-input:focus + #principle-editor-label #principle-editor-label-text,
+  #principle-editor-input:valid + #principle-editor-label #principle-editor-label-text{
+   transform: translateY(-250%);
+   color: $complement;
+   text-shadow:  3px 3px 9px $opaque;
+  } 
+}
+
+@keyframes modalEnter {
+  from {transform: scale(0.2); opacity: 0;}
+  to {transform: scale(1.0); opacity: 1;}
 }

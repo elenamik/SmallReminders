@@ -1,7 +1,7 @@
 @import '../../styles/colors.scss';
 .error-container {
-  color: $primary-4;
-  border: solid $primary-1-opaque;
+  color: $primary;
+  border: solid $opaque;
   border-radius: 10px;
   animation: bounceIn 0.5s;
   padding: 1em;
