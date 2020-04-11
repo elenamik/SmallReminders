@@ -2,7 +2,9 @@ import React from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
 function LoggedIn ({ user, handleLogout }) {
+  console.log('props in logged in', user, handleLogout);
   const history = useHistory();
+
   const logout = () => {
     handleLogout();
     history.push('/');
@@ -14,7 +16,7 @@ function LoggedIn ({ user, handleLogout }) {
         Logged in as: {user.email}
       </div>
       <Link className='header-button' to='/dashboard'>Dashboard</Link>
-      <Link className='header-button' to='/' onClick={logout}>Log Out</Link>
+      <Link className='header-button' onClick={logout}>Log Out</Link>
     </div>
   );
 }

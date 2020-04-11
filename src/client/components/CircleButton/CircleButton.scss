@@ -5,10 +5,10 @@
   justify-content: center;
   color: $complement;
   background-color: $primary;
-  font-size: 1em;
+  font-size: 1.2em;
   border-radius: 50%;
-  height: 2em;
-  width: 2em;
+  height: 50px;
+  width: 50px;
   font-family: sans-serif;
 }
 .circle-button-container:hover {
@@ -24,5 +24,7 @@
 @media only screen and (min-width: 768px) {
   .circle-button-container {
     font-size: 2em;
+    height: 70px;
+    width: 70px;
   }
 }

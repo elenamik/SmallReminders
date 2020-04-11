@@ -7,14 +7,14 @@ import Drawer from '../Drawer';
 import Surface from '../Surface';
 import './Header.scss';
 
-function Header ({ user, setUser, handleLogOut }) {
+function Header ({ user, handleLogOut }) {
   const [drawer, setDrawer] = useState(false);
   const history = useHistory();
   const handleClick = () => {
     history.push('/');
   };
 
-  const LoggedInButtons = () => {
+  const LogInButtons = () => {
     return (
       <>
         <Link className='header-button' to='/login'>Log in</Link>
@@ -33,8 +33,8 @@ function Header ({ user, setUser, handleLogOut }) {
           </h1>
           <div id='header-side-container'>
             {user ? (
-              <LoggedIn user={user} handleLogOut={handleLogOut} />
-            ) : LoggedInButtons()}
+              <LoggedIn user={user} handleLogout={handleLogOut} />
+            ) : LogInButtons()}
           </div>
           <div id='hamburger-nav-container'>
             <img id='hamburger-nav' src={hamburgerNav} onClick={() => setDrawer(true)} />

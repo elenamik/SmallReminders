@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
 import ViewTemplate from '../ViewTemplate';
 import textIllustration from '../../const/texts_illustration.png';
-import downArrows from '../../const/down_arrows.png';
 import book from '../../const/book.png';
 import trashBin from '../../const/trashbin.png';
 import phone from '../../const/phone.png';
 import Demo from '../../components/Demo';
+import ScrollToButton from '../../components/ScrollToButton';
 import './Welcome.scss';
 
 function Welcome ({ user }) {
   const [loading, setLoading] = useState(true);
-  const myRef = useRef();
+  const aboutRef = useRef();
   useEffect(() => {
     const awaitUser = async () => {
       await user;
@@ -18,9 +18,10 @@ function Welcome ({ user }) {
     };
     awaitUser();
   });
-  const scrollToRef = () => {
-    myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const scrollToDetails = () => {
+    aboutRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
+
   return (
     <ViewTemplate title='' id='welcome-view'>
       <div id='hero'>
@@ -32,11 +33,10 @@ function Welcome ({ user }) {
         </div>
         <img id='hero-image' src={textIllustration} />
       </div>
-      <button id='learn-more-button' onClick={scrollToRef} ref={myRef}>
-        <span>Learn More</span>
-        <img id='down-arrows' src={downArrows} />
-      </button>
-      <div className='welcome-subcontent'>
+      <div id='scroll-to-details'>
+        <ScrollToButton text='Learn More' scrollToRef={scrollToDetails} />
+      </div>
+      <div className='welcome-subcontent' ref={aboutRef}>
         <div className='subtext'>
           In the vein of Ray Dalios Principles, there are lessons you learn in life which can help you make decisions in the future.
         </div>

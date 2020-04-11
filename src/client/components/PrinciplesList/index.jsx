@@ -7,7 +7,7 @@ import { ADD_PRINCIPLE, DELETE_PRINCIPLE_BY_ID, UPDATE_PRINCIPLE_BY_ID } from '.
 import './PrinciplesList.scss';
 
 function PrinciplesList ({ data, update }) {
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState(true);
   const handeClick = () => {
     setEditing(true);
   };
@@ -45,7 +45,7 @@ function PrinciplesList ({ data, update }) {
         {list}
       </div>
       {editing &&
-        <Modal id='modal-root'>
+        <Modal id='modal-root' handleClose={handleClose}>
           <PrincipleEditor
             data={editing}
             handleClose={handleClose}

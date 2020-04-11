@@ -43,7 +43,7 @@ function App () {
   return (
     <>
       <Router>
-        <Header user={user} setUser={setUser} handleLogOut={handleLogOut}/>
+        <Header user={user} setUser={setUser} handleLogOut={handleLogOut} />
         <Switch>
           <Route exact path='/'>
             <Welcome user={user} />

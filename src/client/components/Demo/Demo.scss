@@ -1,4 +1,18 @@
 @import '../../styles/colors.scss';
+/* mobile */
+.demo-container {
+  margin: 10%;
+  margin-top: 20%;
+}
+
 .demo-header {
-  color: $primary-4
+  color: $primary;
+  text-align: center;
+}
+
+/* large screens */
+@media only screen and (min-width: 768px) {
+  .demo-container {
+    margin-top: 10%;
+  }
 }

@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PrinciplesList from '../PrinciplesList';
 import samplePrinciples from '../../../server/constants/sample';
+import ScrollToButton from '../../components/ScrollToButton';
 import { ADD_PRINCIPLE, DELETE_PRINCIPLE_BY_ID, UPDATE_PRINCIPLE_BY_ID } from '../../redux/constants';
+import './Demo.scss';
 
 function Demo () {
   const [principles, updatePrinciples] = useState(samplePrinciples);
+  const demoRef = useRef();
+
+  const scrollToDemo = () => {
+    demoRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const update = (action, payload) => {
     // types of actions -- delete, add, update
@@ -35,8 +42,10 @@ function Demo () {
 
   return (
     <div className='demo-container'>
-      <h3 className='demo-header'>Try Out The Demo</h3>
-      <PrinciplesList data={principles} update={update} />
+      <ScrollToButton text='Try the Demo' scrollToRef={scrollToDemo} />
+      <div ref={demoRef}>
+        <PrinciplesList data={principles} update={update} />
+      </div>
     </div>
   );
 }

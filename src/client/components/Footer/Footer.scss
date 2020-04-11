@@ -10,6 +10,7 @@
   display: flex;
   justify-content: center;
   text-align: center;
+  align-content: center;
   flex-flow: row;
   margin: auto;
   height: 40px;
@@ -19,7 +20,10 @@
   font-size: 0.5em;
   margin: auto;
   min-width: 170px;
-
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
 #github-link{
@@ -29,6 +33,10 @@
 }
 #github-link:hover{
   color: white;
+}
+
+#git-mark {
+  margin: 2%;
 }
 
 /* larger screens */

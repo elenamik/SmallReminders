@@ -1,15 +1,8 @@
 @import '../../styles/colors.scss';
 
 /* mobile */
-.app {
-  display: flex;
-}
 .view {
   flex-grow: 1;
-}
-html, body {
-  height: 100%;
-  width: 100%
 }
 .view-header-container{
   background: $primary;

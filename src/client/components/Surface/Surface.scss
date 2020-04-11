@@ -1,5 +1,6 @@
 @import '../../styles/colors.scss';
 .surface{
+  z-index: 10;
   background-color: $opaque;
   position: fixed;
   height: 100%;
