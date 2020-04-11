@@ -17,7 +17,7 @@
   flex-direction: row;
   align-self: flex-end;
   align-items: center;
-  font-size: 1em;
+  font-size: 1.2em;
   color: $primary;
   font-weight: bold;
   min-width: 20px;
@@ -47,7 +47,7 @@
 /* large screens */
 @media only screen and (min-width: 768px) {
   #header-title {
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-weight: bold;
     min-width: 35%;
     cursor: pointer;
