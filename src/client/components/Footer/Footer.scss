@@ -18,18 +18,16 @@
 
 .footer-text {
   font-size: 0.5em;
-  margin: auto;
   min-width: 170px;
   display: flex;
-  align-content: center;
-  align-items: center;
   flex-direction: row;
-}
+  align-items: center;
+  justify-content: center;
+  }
 
 #github-link{
   color: $complement-light;
   padding-left: 1%;
-  text-decoration: underline;
 }
 #github-link:hover{
   color: white;
@@ -37,6 +35,8 @@
 
 #git-mark {
   margin: 2%;
+  height: 16px;
+  width: 16px;
 }
 
 /* larger screens */
@@ -65,6 +65,11 @@
   }
   #github-link:hover{
     color: white;
+  }
+  #git-mark {
+    margin: 2%;
+    height: 32px;
+    width: 32px;
   }
   
 
